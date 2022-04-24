@@ -1,0 +1,233 @@
+*{
+	margin: 0;
+	padding: 0;
+	font-family: sans-serif;
+}
+
+.banner{
+	width: 100%;
+	height: 100vh;
+	background-image: linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.45)), url(website.jpg);
+	background-size: cover;
+	background-position: center;
+	text-align: center;
+}
+.navbar{
+	width: 85%;
+	margin: auto;
+	padding: 35px 0;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+.logo{
+	width: 450px;
+	cursor: pointer;
+}
+.navbar ul li{
+	list-style: none;
+	display: inline-block;
+	margin: 0 20px;
+	position: relative;
+}
+.navbar ul li a{
+	text-decoration: none;
+	color: #fff;
+	text-transform: uppercase;
+}
+.navbar ul li::after{
+	content: '';
+	height: 3px;
+	width: 0%;
+	background: #009688;
+	position: absolute;
+	left: 0;
+	bottom: -5px;
+	transition: 0.5s;
+}
+.navbar ul li:hover::after{
+	width: 100%;
+}
+.content{
+	width: 100%;
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+	text-align: center;
+	color: #fff;
+}
+.content h1{
+	font-size: 60px;
+	margin-top: 80px;
+}
+.content p{
+	margin: 10px auto;
+	font-weight: 95;
+	line-height: 15px;
+}
+button {
+	width: 200px;
+	padding: 15px 0;
+	text-align: center;
+	margin: 20px 10px;
+	border-radius: 30px;
+	font-weight: bold;
+	border: none;
+	background: #93b2b2;
+	color: #fff;
+	cursor: pointer;
+	position: relative;
+	overflow: hidden;
+}
+button:hover{
+    transform: translateY(-5px);
+    background: #586a6a;
+}
+
+.postajob {
+	margin-top: 50px;
+	width: 100%;
+	display: flex;
+	justify-content: flex-end;
+	transform: translateY(-50%);
+	text-align: center;
+
+}
+.alignments {
+	width: 100%;
+	display: flex;
+justify-content: flex-end;
+	transform: translateY(-50%);
+	text-align: center;
+	
+}
+
+.alignsearch {
+	width: 100%;
+display: flex;
+justify-content: flex-end;
+	transform: translateY(-50%);
+	text-align: center;
+}
+input {
+	
+	padding: 10px 0;
+	text-align: center;
+	margin: 10px 5px;
+	border-radius: 30px;
+	font-weight: bold;
+	border: none;
+	width: 200px;
+	
+	cursor: pointer;
+	position: relative;
+	overflow: hidden;
+}
+
+#submit {
+
+	background: #93b2b2;
+	color: #fff;
+}
+#submit:hover{
+    transform: translateY(-5px);
+    background: #586a6a;
+}
+
+
+.container {
+	width: 500px;
+	left: 26%;
+	top: 150px;
+	position: absolute;
+	background-color: transparent;
+	border-radius: 20px;
+	padding: 30px;
+	font-size: 30px;
+	color: #fff;
+}
+.job {
+	top: 40%;
+	left: 26%;
+	width: 550px;
+	
+	position: absolute;
+
+	
+	
+}
+
+.job-box {
+padding-bottom: 30px;
+width: 100%;
+
+	padding: 15px 0;
+	text-align: center;
+	margin: 20px 10px;
+	border-radius: 0px;
+
+	border: none;
+	background: #fff;
+	
+	cursor: pointer;
+	position: relative;
+	overflow: hidden;
+}
+.title-font {
+	color: ;
+}
+.text-font {
+	color: ;
+}
+
+.title-search {
+	
+width: 500px;
+	left: 26%;
+	top: 150px;
+	position: absolute;
+	background-color: transparent;
+	border-radius: 20px;
+	padding: 30px;
+	font-size: 30px;
+	color: #fff;
+
+}
+
+.searchresult {
+color: #fff;
+}
+
+
+/* form application */
+
+
+.applicationform {
+	padding-bottom: 30px;
+	width: 50%;
+	padding: 15px 0;
+	text-align: center;
+	margin: 20px 10px;
+	border-radius: 0px;
+	border: 0px solid black;
+	background: #fff;
+	
+	cursor: pointer;
+	position: relative;
+	overflow: hidden;
+	top: 33%;
+	left: 473px;
+	width: 400px;
+	position: absolute;
+}
+
+.nameless{
+	width: 360px;
+	margin: 10px auto 0px;
+	background:#586a6a;
+	text-align: center;
+	border-radius: 10px 10px 0px 0px;
+	padding:20px;
+	color: #fff;
+}
+

@@ -1,0 +1,120 @@
+.container-fluid{
+     width: auto;
+     height: auto;
+     background:transparent;
+     display: black;
+     outline:solid black;
+     border-radius: 5px;
+     box-shadow: 0 0 5px rgba(240, 19, 184, 0.726);
+     padding: 10px 10px 10px 10px;
+     position: absolute;
+     top: 110px;
+     left: 10%;
+}
+.container .title{
+    color: #111;
+    font-weight: 500;
+    font-size: 1.1rem;
+    text-transform: capitalize;
+    margin-bottom: 20px;
+    display: block;
+}
+.container .title::before{
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 3px;
+  width: 30px;
+  border-radius: 5px;
+  background: #93b2b2
+}
+.card-body{
+  height: auto;
+  flex: 1 1 auto;
+  min-height: 1px;
+  padding: 310px;
+  text-align: center;
+}
+.system{
+  width: auto;
+  height: auto;
+  border: 2px solid black;
+  margin-top: -235px;
+  margin-left: -210px;
+  border-radius: 5px;
+}
+.email{
+  width: auto;
+  height: auto;
+  border: 2px solid black;
+  margin-top: -450px;
+  margin-left: 110px;
+  border-radius: 5px;
+}
+.contact{
+  width: auto;
+  height: auto;
+  border: 2px solid black;
+  margin-top: 305px;
+  margin-left: -80px;
+  border-radius: 5px;
+}
+.contents{
+  width: auto;
+  height: auto;
+  border: 2px solid black;
+  margin-top: -10px;
+  margin-left: 255px;
+  border-radius: 5px;
+}
+
+/*element.style{
+
+}
+label{
+  display: inline-block;
+  margin-top: -20px;
+  margin-bottom: 0.5ren;
+}
+*, ::after, ::before{
+  box-sizing: border-box;
+}
+label{
+  cursor: default;
+}
+/*inherited from div.card.col-lg-12*/
+/*.card{
+  position: relative;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  min-width: 0;
+  word-wrap: break-word;
+  background-color: #fff;
+  background-clip: border-box;
+  border: 1px solid rgba(0,0,0,.125);
+  border-radius: 0.25rem;
+}*/
+/*Inherited from body*/
+/*body{
+  font-family: "Open Sans", sans-serif;
+  color: #444444;
+  width: 100%;
+  height: calc(100%);
+}
+body{
+  margin: 0;
+  font-family: "Verdana", sans-serif;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #212529;
+  text-align: left;
+  background-color: white;
+}*/
+/*Inherited from...
+:root{
+
+}*/
