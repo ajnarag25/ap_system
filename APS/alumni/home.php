@@ -14,17 +14,35 @@ if (!isset($_SESSION['user'])) {
     <link rel="stylesheet" href="webdesign.css">
     <link rel="stylesheet" href="transitions.css">
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
     <title>Home</title>
 </head>
 <body>
+<style>
+	.logo-text{
+		display: flex;
+		align-items: center;
+		color: white;
+	}
+	.logo-text h2{
+		margin-left: 20px;
+	}
+  .links p{
+    color: white;
+  }
+</style>
 <header>
 	<div class="header">
 		<div class="navbar">
-		<h1 style="color: cyan;"> Alumni Information System </h1>
+      <div class="logo-text">
+          <img src="QCU_Logo_2019.png" width="70" height="70" alt="">
+          <h2> ALUMNI PLACEMENT PORTAL</h2>
+        </div>
+
         <ul>
             <li><a href="home.php">Home</a></li>
-            <li><a href="events.php">Events</a></li>
-            <li><a href="forums.php">Forum</a></li>
+            <li><a href="">About</a></li>
             <li><a href="joboppurtunities.php">Job Opportunities</a>
                 <div class="sub-menu">
               <ul>
@@ -38,22 +56,40 @@ if (!isset($_SESSION['user'])) {
         </ul>
         </ul>
         </div>
-		<span><center style="font-size: 69px; margin-top: 8rem; color:#C8FFFC;" data-aos="zoom-out" data-aos-duration="1000" data-aos-once="true">"Get started <br>with your<br> trip to memory lane."</span>
-        <div class="content-header">
+
+    <br><br><br>
+
+    <div class="text-center links">
+      <div class="row">
+        <div class="col-sm-4">
+          <img src="images/1.jpg" width="280px" alt="" data-aos="zoom-out" data-aos-duration="1000" data-aos-once="true">
+          <br><br>
+          <p data-aos="zoom-in" data-aos-duration="1000" data-aos-once="true">Register now to join our <br> Virtual Career Fair on March <br> 1 at 1:00 PM.</p>
+          <a href="https://qcu.edu.ph/virtual-career-fair/" class="btn btn-success">Read More</a>
+        </div>
+        <div class="col-sm-4">
+          <img src="images/2.jpg" width="280px" alt="" data-aos="zoom-out" data-aos-duration="1000" data-aos-once="true">
+          <br><br>
+          <p data-aos="zoom-in" data-aos-duration="1000" data-aos-once="true">SUN LIFE is looking for a <br> Financial Adviser </p>
+          <a href="https://qcu.edu.ph/sun-life-is-looking-for-a-financial.../" class="btn btn-success">Read More </a>
+        </div>
+        <div class="col-sm-4">
+          <img src="images/3.jpg" width="280px" alt="" data-aos="zoom-out" data-aos-duration="1000" data-aos-once="true">
+          <br><br>
+            <p data-aos="zoom-in" data-aos-duration="1000" data-aos-once="true">FAArt Creative Design Studio is <br> Looking for an Account Executive <br> and a Graphic Artist!</p>
+            <a href="https://qcu.edu.ph/faart-studio-is-looking-for-applicants/" class="btn btn-success">Read More</a>
+        </div>
+      </div>
     </div>
-</header>
-	<div class="backdrop nomt">
-        <h1><center style="font-size: 50px; color:#1E3B55;" class="nomt" data-aos="zoom-in" data-aos-duration="1000" data-aos-once="true">About Us</center></h1>
-        <center style="font-size: 20px; color:#1E3B55;" class="nomt" data-aos="zoom-in" data-aos-duration="1000" data-aos-once="true">
-        <h2>Contact Info: +639064113098</h2>  <h2>Email: emmanuel.malbas20@gmail.com</h2>
-         </center>
-	</div>
-	<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+   
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     <script>
       AOS.init({
         duration: 3000,
         once: true,
       });
     </script>
+ 
+</header>
 </body>
 </html>

@@ -11,6 +11,7 @@ if (isset($_SESSION['username'])) {
 }
 
 if (isset($_POST['submit'])) {
+  $student_no = $_POST['student_number'];
   $username = $_POST['username'];
   $password = $_POST['password'];
   $cpassword = $_POST['cpassword'];
@@ -25,8 +26,8 @@ if (isset($_POST['submit'])) {
     $sql = "SELECT * FROM tbl_users WHERE email='$email'";
     $result = mysqli_query($conn, $sql);
     if (!$result->num_rows > 0) {
-      $sql = "INSERT INTO tbl_users (username, password, email, fullname, gender, batch, course_id, branch_id)
-          VALUES ('$username', '".password_hash($_POST['password'], PASSWORD_DEFAULT)."', '$email', '$fullname', '$gender','$batch', '$course_id', '$branch_id')";
+      $sql = "INSERT INTO tbl_users (student_id,username, password, email, fullname, gender, batch, course_id, branch_id)
+          VALUES ('$student_no', '$username', '".password_hash($_POST['password'], PASSWORD_DEFAULT)."', '$email', '$fullname', '$gender','$batch', '$course_id', '$branch_id')";
       $result = mysqli_query($conn, $sql);
       if ($result) {
         echo "<script>alert('User Registration Completed.')</script>";

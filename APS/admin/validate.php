@@ -21,7 +21,7 @@ if ($_SERVER ["REQUEST_METHOD"]== "POST") {
             if(password_verify($password, $user->password)){
                if($user->type=='admin'){
                 $_SESSION['user']=$user;
-                header('Location: http://localhost/alumni/admin/adminpage.php');
+                header('Location: adminpage.php');
                }
 
             }else{

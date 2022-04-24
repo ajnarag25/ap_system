@@ -137,8 +137,6 @@ $user = mysqli_fetch_assoc($result);
 		<h1 style="color: cyan;"> Alumni Information System </h1>
         <ul>
             <li><a href="home.php">Home</a></li>
-            <li><a href="events.php">Events</a></li>
-            <li><a href="forums.php">Forum</a></li>
             <li><a href="joboppurtunities.php">Job Opportunities</a>
                 <div class="sub-menu">
               <ul>

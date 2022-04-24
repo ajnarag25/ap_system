@@ -12,17 +12,29 @@ include_once 'get_user.php';
     <link rel="stylesheet" href="transitions.css">
     <title>QCU Alumni Portal</title>
 </head>
+<style>
+	.logo-text{
+		display: flex;
+		align-items: center;
+		color: white;
+	}
+	.logo-text h2{
+		margin-left: 20px;
+	}
+</style>
 <body>
 	<div class="banner">
 		<div class="navbar">
-		<img src="logo.png" class="logo">
+			<div class="logo-text">
+				<img src="QCU_Logo_2019.png" width="70" height="70" alt="">
+				<h2> ALUMNI PLACEMENT PORTAL</h2>
+			</div>
+
         <ul>
             <li><a href="home.php">Home</a></li>
-            <li><a href="events.php">Events</a></li>
-            <li><a href="forums.php">Forum</a></li>
             <li><a href="joboppurtunities.php">Job Opportunities</a>
             <li><a href="profile.php"><?php echo $_SESSION['user']['username'];?></a></li>
-
+		</ul>
 	</div>
 	<div class="content">
     	<?php echo "<h1>Welcome, " . $_SESSION['user']['username'] . "!</h1>"; ?>

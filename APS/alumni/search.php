@@ -26,8 +26,6 @@ if (!isset($_SESSION['user'])) {
         <img src="logo.png" class="logo">
         <ul>
             <li><a href="home.php">Home</a></li>
-            <li><a href="events.php">Events</a></li>
-            <li><a href="forums.php">Forum</a></li>
             <li><a href="joboppurtunities.php">Search A Job</a>
                 <div class="sub-menu">
               <ul>

@@ -165,7 +165,8 @@ $branches=mysqli_fetch_all($result3, MYSQLI_ASSOC);
     <thead>
       <th>#</th>
       <th>Avatar</th>
-    <th>Name</th>
+      <th>Student No.</th>
+      <th>Name</th>
       <th>Username</th>
       <th>Type</th>
       <th>Status</th>
@@ -184,20 +185,23 @@ $branches=mysqli_fetch_all($result3, MYSQLI_ASSOC);
                 $coursestr=$coursestr.'<option value="'.$course['course_id'].'">'.$course['course_name'].'</option>';
                 
               }
-              $verified=$user[10]==1?'Verified':'Unverified';
+              $verified=$user[11]==1?'Verified':'Unverified';
               echo '
                 <tr>
                 <td> 
                 '.$user[0].'
                 </td>
                  <td> 
-                <img src="../alumni/'.$user[11].'" class="avatar">
+                <img src="../alumni/'.$user[12].'" class="avatar">
+                </td>
+                <td> 
+                '.$user[1].'
                 </td>
                 <td> 
                 '.$user[4].'
                 </td>
                 <td> 
-                '.$user[1].'
+                '.$user[2].'
                 </td>
                 <td> 
                 '.$user[9].'
