@@ -42,12 +42,23 @@ if (isset($_POST['submit'])) {
 
 	<link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="transitions.css">
-	<title>Login</title>
+	<title>Login - Alumni</title>
 </head>
+<style>
+	.container{
+		width: 400px;
+		min-height: 450px;
+		background: #FFF;
+		border-radius: 5px;
+		box-shadow: 0 0 5px rgba(0,0,0,.3);
+		padding: 40px 30px;
+}
+</style>
 <body>
 	<div class="container">
 		<form action="" method="POST" class="login-email">
-			<p class="login-register-text" style="font-size: 2rem; font-weight: 800;">Login</p>
+			<p class="login-register-text" style="font-size: 2rem; font-weight: 800;">Login - Alumni</p>
+			<br>
 			<div class="input-group">
 				<input type="username" placeholder="Username" name="username" value="<?php echo $username; ?>" required>
 			</div>
@@ -56,6 +67,9 @@ if (isset($_POST['submit'])) {
 			</div>
 			<div class="input-group">
 				<button name="submit" class="btn">Login</button>
+			</div>
+			<div class="input-group">
+				<a href="../index.php" class="btn" style="text-decoration: none;">Back</a>
 			</div>
 			<p class="login-register-text">Don't have an account? <a href="register.php">Register Here</a>.</p>
 		</form>

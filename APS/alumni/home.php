@@ -15,16 +15,18 @@ if (!isset($_SESSION['user'])) {
     <link rel="stylesheet" href="transitions.css">
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
     <title>Home</title>
 </head>
-<body>
 <style>
 	.logo-text{
 		display: flex;
 		align-items: center;
 		color: white;
+    margin-top: 2%;
 	}
+  .uls{
+    margin-top: 2%;
+  }
 	.logo-text h2{
 		margin-left: 20px;
 	}
@@ -32,15 +34,14 @@ if (!isset($_SESSION['user'])) {
     color: white;
   }
 </style>
+<body>
 <header>
-	<div class="header">
-		<div class="navbar">
+	<div class="navbar">
       <div class="logo-text">
-          <img src="QCU_Logo_2019.png" width="70" height="70" alt="">
-          <h2> ALUMNI PLACEMENT PORTAL</h2>
-        </div>
-
-        <ul>
+        <img src="QCU_Logo_2019.png" width="70" height="70" alt="">
+        <h2> ALUMNI PLACEMENT PORTAL</h2>
+      </div>
+        <ul class="uls">
             <li><a href="home.php">Home</a></li>
             <li><a href="">About</a></li>
             <li><a href="joboppurtunities.php">Job Opportunities</a>
@@ -53,9 +54,9 @@ if (!isset($_SESSION['user'])) {
               <ul>
                 <li><a href="profile.php">My Profile</a></li>
                 <li><a href="logout.php">Logout</a></li>
+          </ul>
         </ul>
-        </ul>
-        </div>
+  </div>
 
     <br><br><br>
 

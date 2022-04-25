@@ -8,6 +8,7 @@ include_once 'get_user.php';
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="webdesign.css">
     <link rel="stylesheet" href="transitions.css">
     <title>QCU Alumni Portal</title>
@@ -32,6 +33,7 @@ include_once 'get_user.php';
 
         <ul>
             <li><a href="home.php">Home</a></li>
+			<li><a href="">About</a></li>
             <li><a href="joboppurtunities.php">Job Opportunities</a>
             <li><a href="profile.php"><?php echo $_SESSION['user']['username'];?></a></li>
 		</ul>
