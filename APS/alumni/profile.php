@@ -13,7 +13,21 @@ $user = mysqli_fetch_assoc($result);
 ?>
 <!DOCTYPE html>
 <html lang="en">
+<link rel="stylesheet" href="webdesign.css">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 <style>
+    .logo-text{
+		display: flex;
+		align-items: center;
+		color: white;
+        margin-top: 2%;
+    }
+    .uls{
+      margin-top: 2%;
+    }
+    .logo-text h2{
+      margin-left: 20px;
+    }
     .main-block {
       display: flex;
       flex-direction: column;
@@ -116,11 +130,11 @@ $user = mysqli_fetch_assoc($result);
       flex: 1;
       height: auto;
       }
-      img {
-  border-radius: 5%;
-  width: 12.5rem;
-  height: auto;
-}
+      .user-img {
+      border-radius: 5%;
+      width: 12.5rem;
+      height: auto;
+    }
       }
     </style>
 <head>
@@ -133,10 +147,14 @@ $user = mysqli_fetch_assoc($result);
     <title>My Profile</title>
 <body>
 	<div class="banner">
-		<div class="navbar">
-		<h1 style="color: cyan;"> Alumni Information System </h1>
-        <ul>
+  <div class="navbar">
+      <div class="logo-text">
+        <img src="QCU_Logo_2019.png" width="70" height="70" alt="">
+        <h2> ALUMNI PLACEMENT SYSTEM</h2>
+      </div>
+        <ul class="uls">
             <li><a href="home.php">Home</a></li>
+            <li><a href="about.php">About</a></li>
             <li><a href="joboppurtunities.php">Job Opportunities</a>
                 <div class="sub-menu">
               <ul>
@@ -147,14 +165,14 @@ $user = mysqli_fetch_assoc($result);
               <ul>
                 <li><a href="profile.php">My Profile</a></li>
                 <li><a href="logout.php">Logout</a></li>
+          </ul>
         </ul>
-        </ul>
-        </div>
+  </div>
 <div class="main-block">
       <div class="left-part">
         <p><i class="fas fa-graduation-cap" style="color:white;"></i></p>
         <?php if(isset($_SESSION['user']['avatar_path'])): ?>
-            <img src="<?php echo $_SESSION['user']['avatar_path'] ?>" class="test">
+            <img class="user-img" src="<?php echo $_SESSION['user']['avatar_path'] ?>" class="test">
 
         <?php endif?>
         <form action="upload.php" method="post" enctype="multipart/form-data" style="color: white;">

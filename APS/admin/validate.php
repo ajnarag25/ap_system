@@ -25,11 +25,16 @@ if ($_SERVER ["REQUEST_METHOD"]== "POST") {
                }
 
             }else{
-                echo 'wrong password';
+                echo "<script type=\"text/javascript\">
+                alert(\"Woops! The username or password you entered is wrong.\");
+                window.location = \"index.php\"
+                </script>";
             }
      }else{
-        echo 'user not found';
-        print_r($result);
+        echo "<script type=\"text/javascript\">
+        alert(\"User not found!\");
+        window.location = \"index.php\"
+        </script>";
      }
     // $stmt = $conn->prepare("SELECT * FROM adminlogin");
     // $stmt->execute();

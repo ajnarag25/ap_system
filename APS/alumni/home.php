@@ -39,11 +39,11 @@ if (!isset($_SESSION['user'])) {
 	<div class="navbar">
       <div class="logo-text">
         <img src="QCU_Logo_2019.png" width="70" height="70" alt="">
-        <h2> ALUMNI PLACEMENT PORTAL</h2>
+        <h2> ALUMNI PLACEMENT SYSTEM</h2>
       </div>
         <ul class="uls">
             <li><a href="home.php">Home</a></li>
-            <li><a href="">About</a></li>
+            <li><a href="about.php">About</a></li>
             <li><a href="joboppurtunities.php">Job Opportunities</a>
                 <div class="sub-menu">
               <ul>

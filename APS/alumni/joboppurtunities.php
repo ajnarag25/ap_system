@@ -15,15 +15,34 @@ if (!isset($_SESSION['user'])) {
     <link rel="stylesheet" href="webdesign.css">
     <link rel="stylesheet" href="transitions.css">
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <title>Job Opportunities</title>
 </head>
+<style>
+  .logo-text{
+		display: flex;
+		align-items: center;
+		color: white;
+        margin-top: 2%;
+	}
+  .uls{
+    margin-top: 2%;
+  }
+	.logo-text h2{
+		margin-left: 20px;
+	}
+</style>
 <body>
 	<header>
 	<div class="header">
-		<div class="navbar">
-		<h1 style="color: cyan;"> Alumni Information System </h1>
-        <ul>
+  <div class="navbar">
+      <div class="logo-text">
+        <img src="QCU_Logo_2019.png" width="70" height="70" alt="">
+        <h2> ALUMNI PLACEMENT SYSTEM</h2>
+      </div>
+        <ul class="uls">
             <li><a href="home.php">Home</a></li>
+            <li><a href="about.php">About</a></li>
             <li><a href="joboppurtunities.php">Job Opportunities</a>
                 <div class="sub-menu">
               <ul>
@@ -34,9 +53,9 @@ if (!isset($_SESSION['user'])) {
               <ul>
                 <li><a href="profile.php">My Profile</a></li>
                 <li><a href="logout.php">Logout</a></li>
+          </ul>
         </ul>
-        </ul>
-        </div>
+  </div>
 		<span><center style="font-size: 69px; color:#C8FFFC; margin-top: 8rem;" data-aos="zoom-out" data-aos-duration="1000" data-aos-once="true">"Get started <br>with your<br> trip to memory lane."</span></h1>
         <div class="content-header">
             </div>
