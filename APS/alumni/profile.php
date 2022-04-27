@@ -156,10 +156,6 @@ $user = mysqli_fetch_assoc($result);
             <li><a href="home.php">Home</a></li>
             <li><a href="about.php">About</a></li>
             <li><a href="joboppurtunities.php">Job Opportunities</a>
-                <div class="sub-menu">
-              <ul>
-                <li><a href="search.php">Search</a></li>
-              </ul>
             <li><a href="profile.php"><?php echo $_SESSION['user']['username'];?></a>
             <div class="sub-menu">
               <ul>

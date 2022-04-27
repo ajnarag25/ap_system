@@ -19,6 +19,21 @@ if (!isset($_SESSION['user'])) {
     <title>Job Opportunities</title>
 </head>
 <style>
+  .white-bg{
+    background-color: white;
+    padding: 10px;
+    border-radius: 10px;
+  }
+  #id2, #id3 {
+    display:none;
+  }
+  .card-custom{
+    padding: 20px;
+    border-radius:30px; 
+    padding-left: 100px;
+    padding-right: 100px;
+    background: #adad99;
+}
   .logo-text{
 		display: flex;
 		align-items: center;
@@ -44,10 +59,6 @@ if (!isset($_SESSION['user'])) {
             <li><a href="home.php">Home</a></li>
             <li><a href="about.php">About</a></li>
             <li><a href="joboppurtunities.php">Job Opportunities</a>
-                <div class="sub-menu">
-              <ul>
-                <li><a href="search.php">Search</a></li>
-              </ul>
             <li><a href="profile.php"><?php echo $_SESSION['user']['username'];?></a>
             <div class="sub-menu">
               <ul>
@@ -61,55 +72,101 @@ if (!isset($_SESSION['user'])) {
             </div>
 </header>
     <div class="backdrop">
-        <h1><center style="font-size: 50px; color:#1E3B55;" class="backdrop h1" data-aos="zoom-in" data-aos-duration="1000" data-aos-once="true">Job Opportunities</center></h1>
-    <div class="container">
+
+      <div class="text-center">
+        <h2 data-aos="zoom-out" data-aos-duration="1000" data-aos-once="true">Submit Form</h2>
+      </div>
+      <hr class="my-3">
+        <div class="card-custom">
+          <div class="text-center">
+            <img src="QCU_Logo_2019.png" width="70" height="70" alt="">
+            <h2> ALUMNI PLACEMENT SYSTEM</h2>
+            <br>
+          </div>
+          <form action="">
+            <div class="form-row">
+              <div class="form-group col-md-4">
+                <label for="">Last Name *</label>
+                  <input type="text" class="form-control" required>
+                </div>
+                <div class="form-group col-md-4">
+                <label for="">First Name *</label>
+                  <input type="text" class="form-control" required>
+                </div>
+                <div class="form-group col-md-4">
+                <label for="">Middle Name *</label>
+                  <input type="text" class="form-control" required>
+                </div>
+                <div class="form-group col-md-6">
+                <label for="">Student Number *</label>
+                  <input type="text" class="form-control" required>
+                </div>
+                <div class="form-group col-md-6">
+                <label for="">Address *</label>
+                  <input type="text" class="form-control" required>
+                </div>
+                <div class="form-group col-md-4">
+                <label for="">Email Address *</label>
+                  <input type="text" class="form-control">
+                </div>
+                <div class="form-group col-md-4">
+                <label for="">Batch Graduated *</label>
+                  <input type="date" class="form-control" required>
+                </div>
+                <div class="form-group col-md-4">
+                <label for="">Gender *</label>
+                  <select name="strand" id="b6" class="form-control" required>
+                      <option selected disabled="true">Select gender</option>
+                      <option>Male</option>
+                      <option>Female</option>
+                  </select>
+                </div>
+                <div class="form-group col-md-6">
+                <label for="">Types of Careers *</label>
+                <select name="strand" class="form-control" id="id1" onchange="myFunction()" required>
+                      <option selected disabled="true">Select Carreer</option>
+                      <option value="1">Computer Science and Information Techonology</option>
+                      <option value="2">Education</option>
+                      <option value="3">Engineering</option>
+                      <option value="4">Business and Accountancy</option>
+                  </select>
+                </div>
+                <div class="form-group col-md-6">
+                <label for="">Upload Resume *</label>
+                  <input type="file" class="form-control">
+                </div>
+                <div class="form-group col-md-6" id="id2">
+                  <label for="">Select at least 3</label>
+                  <br>
+                  <div class="white-bg">
+                    <div class="form-check ">
+                      <input class="form-check-input position-static" type="checkbox" id="blankCheckbox" value="option1" aria-label="...">
+                      <label class="form-check-label">Computer Programmer</label>
+                      <br>
+                      <input class="form-check-input position-static" type="checkbox" id="blankCheckbox" value="option2" aria-label="...">
+                      <label class="form-check-label">Information Security Analyst</label>
+                      <br>
+                      <input class="form-check-input position-static" type="checkbox" id="blankCheckbox" value="option3" aria-label="...">
+                      <label class="form-check-label">Web Developer</label>
+                      <br>
+                      <input class="form-check-input position-static" type="checkbox" id="blankCheckbox" value="option4" aria-label="...">
+                      <label class="form-check-label">Database Administrator</label>
+                      <br>
+                      <input class="form-check-input position-static" type="checkbox" id="blankCheckbox" value="option5" aria-label="...">
+                      <label class="form-check-label">Others</label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <br>
+              <div class="text-center">
+                <button type="submit required" class="btn btn-success">Submit</button>
+              </div>
+              <br>
+            </div>
+          </form>
         </div>
-        	<div class="row">
-        		<div class="col-md-9">
-        			<?php
-		$sql = "SELECT * FROM tbl_jobapplication";
-		$result = mysqli_query($conn, $sql);
-		$queryResults = mysqli_num_rows($result);
-
-
-		if ($queryResults > 0){
-			while ($row = mysqli_fetch_assoc($result)) {
-				echo "<div class='job-box card bg-light'>
-				<div class='title-font' data-aos='zoom-in' data-aos-duration='1000' data-aos-once='true'>
-
-				<h3>".$row['jobtitle']."</h3> 
-
-				</div>
-
-				<div class='text-font' data-aos='zoom-in' data-aos-duration='1000' data-aos-once='true'> 
-				<p><center>	&nbsp</center></p>
-
-				<p><center> ".$row['companyname']. " </center></p> 
-				<p><center>	-------------------------------------------------------------</center></p>
-				<p><center> ".$row['details']. "</center></p> 
-				<p><center> ".$row['employer']."</center></p>
-				</div>
-				</div>";
-			}
-		}
-		?>
-        		</div>
-        		<div class="col-md-3">
-    <div class="postajob" data-aos="flip-up" data-aos-duration="1000" data-aos-once="true">
-    <a href="jobapplication.php" ><button type="button" >Post a Job Offer</button> </a>
-
-        </div>
-                <form action="search.php" method="POST">
-        <div class="alignsearch" data-aos="flip-up" data-aos-duration="1000" data-aos-once="true" ><input id= "submit" type="text" name="search" placeholder="Input Search"></div>
-
-        <div class="alignments" data-aos="flip-up" data-aos-duration="1000" data-aos-once="true">
-            <button type="submit">Search</button>
     </div>
-</form>
-        		</div>
-        	</div>
-        </div>
-   
 
 
 	
@@ -120,6 +177,10 @@ if (!isset($_SESSION['user'])) {
         duration: 3000,
         once: true,
       });
+      function myFunction() {
+          var x = document.getElementById("id1").value;
+          if (x == "1") document.getElementById("id2").style.display = "block";
+      }
     </script>
 </body>
 </html>

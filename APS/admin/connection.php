@@ -3,7 +3,7 @@
 $conn =" ";
 
 try {
-    $servername = "localhost";
+    $servername = "localhost:3307";
     $dbname = "db_aps";
     $username = "root";
     $password = "";
@@ -13,7 +13,7 @@ try {
     //     $username, $password
     // );
 
-    $conn = mysqli_connect('localhost', $username, $password, $dbname);
+    $conn = mysqli_connect('localhost:3307', $username, $password, $dbname);
 
 
     // $conn->setAttribute(PDO::ATTR_ERRMODE,
