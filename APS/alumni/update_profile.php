@@ -5,13 +5,13 @@ include 'config.php';
 session_start();
 
 if(isset($_POST['update'])){
-	$updatedUN = $_POST['fullname'];
+	$updatedFN = $_POST['firstname'];
 	$updatedEmail = $_POST['email'];
 	$updatedGender = $_POST['gender'];
 
-	if (!empty($updatedUN) && !empty($updatedEmail) && !empty($updatedGender)){
+	if (!empty($updatedFN) && !empty($updatedEmail) && !empty($updatedGender)){
 		$sql = 'UPDATE tbl_users SET 
-		fullname = "'.$_POST['fullname'].'",
+		firstname = "'.$_POST['firstname'].'",
 		email = "'.$_POST['email'].'",
 		gender = "'.$_POST['gender'].'"
 		WHERE user_id="'.$_POST['user_id'].'"

@@ -86,22 +86,6 @@ header('location: job.php');
         </a>
       </li>
       <li>
-        <a href="event.php">
-        <svg>
-            <use xlink:href="#events"></use>
-          </svg>
-          <span>Events</span>
-        </a>
-      </li>
-      <li>
-        <a href="forum.php">
-        <svg>
-            <use xlink:href="#forum"></use>
-          </svg>
-          <span>Forum</span>
-        </a>
-      </li>
-      <li>
       <a href="Users.php">
       <svg>
         <use xlink:href="#users"></use>

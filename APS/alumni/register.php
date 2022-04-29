@@ -16,7 +16,9 @@ if (isset($_POST['submit'])) {
   $password = $_POST['password'];
   $cpassword = $_POST['cpassword'];
   $email = $_POST['email'];
-  $fullname = $_POST['fullname'];
+  $firstname = $_POST['firstname'];
+  $middlename = $_POST['middlename'];
+  $lastname = $_POST['lastname'];
   $gender = $_POST['gender'];
   $batch = $_POST['batch'];
   $course_id = $_POST['course_id'];
@@ -26,8 +28,8 @@ if (isset($_POST['submit'])) {
     $sql = "SELECT * FROM tbl_users WHERE email='$email'";
     $result = mysqli_query($conn, $sql);
     if (!$result->num_rows > 0) {
-      $sql = "INSERT INTO tbl_users (student_id,username, password, email, fullname, gender, batch, course_id, branch_id)
-          VALUES ('$student_no', '$username', '".password_hash($_POST['password'], PASSWORD_DEFAULT)."', '$email', '$fullname', '$gender','$batch', '$course_id', '$branch_id')";
+      $sql = "INSERT INTO tbl_users (student_id,username, password, email, firstname, middlename, lastname, gender, batch, course_id, branch_id)
+          VALUES ('$student_no', '$username', '".password_hash($_POST['password'], PASSWORD_DEFAULT)."', '$email', '$firstname', '$middlename', '$lastname', '$gender','$batch', '$course_id', '$branch_id')";
       $result = mysqli_query($conn, $sql);
       if ($result) {
         echo "<script>alert('User Registration Completed.')</script>";
@@ -35,7 +37,9 @@ if (isset($_POST['submit'])) {
         $email = "";
         $_POST['password'] = "";
         $_POST['cpassword'] = "";
-        $fullname ="";
+        $firstname ="";
+        $middlename ="";
+        $lastname ="";
         $gender = "";
         $batch = "";
         $course_id = "";
@@ -74,8 +78,16 @@ if (isset($_POST['submit'])) {
       <form action="#" method="POST">
         <div class="user-details">
           <div class="input-box">
-            <span class="details">Full Name</span>
-            <input type="text" placeholder="Enter your name" name="fullname" value="<?php echo $fullname; ?>" required>
+            <span class="details">First Name</span>
+            <input type="text" placeholder="Enter your firstname" name="firstname" value="<?php echo $firstname; ?>" required>
+          </div>
+          <div class="input-box">
+            <span class="details">Middle Name</span>
+            <input type="text" placeholder="Enter your middlename" name="middlename" value="<?php echo $middlename; ?>" required>
+          </div>
+          <div class="input-box">
+            <span class="details">Last Name</span>
+            <input type="text" placeholder="Enter your lastname" name="lastname" value="<?php echo $lastname; ?>" required>
           </div>
           <div class="input-box">
             <span class="details">Username</span>

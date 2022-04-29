@@ -93,22 +93,6 @@ $branches=mysqli_fetch_all($result3, MYSQLI_ASSOC);
         </a>
       </li>
       <li>
-        <a href="event.php">
-        <svg>
-            <use xlink:href="#events"></use>
-          </svg>
-          <span>Events</span>
-        </a>
-      </li>
-      <li>
-        <a href="forum.php">
-        <svg>
-            <use xlink:href="#forum"></use>
-          </svg>
-          <span>Forum</span>
-        </a>
-      </li>
-      <li>
       <a href="Users.php">
       <svg>
             <use xlink:href="#users"></use>
@@ -185,14 +169,14 @@ $branches=mysqli_fetch_all($result3, MYSQLI_ASSOC);
                 $coursestr=$coursestr.'<option value="'.$course['course_id'].'">'.$course['course_name'].'</option>';
                 
               }
-              $verified=$user[11]==1?'Verified':'Unverified';
+              $verified=$user[13]==1?'Verified':'Unverified';
               echo '
                 <tr>
                 <td> 
                 '.$user[0].'
                 </td>
                  <td> 
-                <img src="../alumni/'.$user[12].'" class="avatar">
+                <img src="../alumni/'.$user[14].'" class="avatar">
                 </td>
                 <td> 
                 '.$user[1].'

@@ -44,7 +44,7 @@ if (!isset($_SESSION['user'])) {
         <ul class="uls">
             <li><a href="home.php">Home</a></li>
             <li><a href="about.php">About</a></li>
-            <li><a href="joboppurtunities.php">Job Opportunities</a>
+            <li><a href="apply.php">Apply for a job</a>
             <li><a href="profile.php"><?php echo $_SESSION['user']['username'];?></a>
             <div class="sub-menu">
               <ul>

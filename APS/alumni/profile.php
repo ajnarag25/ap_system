@@ -155,7 +155,7 @@ $user = mysqli_fetch_assoc($result);
         <ul class="uls">
             <li><a href="home.php">Home</a></li>
             <li><a href="about.php">About</a></li>
-            <li><a href="joboppurtunities.php">Job Opportunities</a>
+            <li><a href="apply.php">Apply for a job</a>
             <li><a href="profile.php"><?php echo $_SESSION['user']['username'];?></a>
             <div class="sub-menu">
               <ul>
@@ -196,7 +196,7 @@ $user = mysqli_fetch_assoc($result);
         </div>
         <div class="info">
           <input type="hidden" name="user_id" value="<?php echo $user['user_id']?>">
-          <input class="fname" type="text" name="fullname" placeholder="<?php echo $user['fullname']?>" style="width: 400px" required>
+          <input class="fname" type="text" name="firstname" placeholder="<?php echo $user['firstname']?>" style="width: 400px" required>
           <input type="text" name="email" placeholder="<?php echo $user['email']?>" style="width: 400px" required>
           <input type="text" name="gender" placeholder="<?php echo $user['gender']?>" style="width: 400px" required>
           <input type="text" name="course" placeholder="<?php echo $user['course_name']?>" style="width: 400px" disabled>
