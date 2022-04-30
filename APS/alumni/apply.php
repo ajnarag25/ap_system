@@ -91,31 +91,31 @@ if (!isset($_SESSION['user'])) {
               $result = mysqli_query($conn, $query);
               while ($row = mysqli_fetch_array($result)) {
           ?>
-          <form action="">
+          <form action="upload_file.php" method="POST" enctype="multipart/form-data">
             <div class="form-row">
               <div class="form-group col-md-4">
                 <label for="">Last Name <span style="color: red;">*</span></label>
-                  <input type="text" class="form-control" value="<?php echo $row['firstname'] ?>" required>
+                  <input type="text" class="form-control" name="fname" value="<?php echo $row['firstname'] ?>" required>
                 </div>
                 <div class="form-group col-md-4">
                 <label for="">First Name <span style="color: red;">*</span></label>
-                  <input type="text" class="form-control" value="<?php echo $row['middlename'] ?>" required>
+                  <input type="text" class="form-control" name="mname" value="<?php echo $row['middlename'] ?>" required>
                 </div>
                 <div class="form-group col-md-4">
                 <label for="">Middle Name <span style="color: red;">*</span></label>
-                  <input type="text" class="form-control" value="<?php echo $row['lastname'] ?>" required>
+                  <input type="text" class="form-control" name="lname" value="<?php echo $row['lastname'] ?>" required>
                 </div>
                 <div class="form-group col-md-6">
                 <label for="">Student Number <span style="color: red;">*</span></label>
-                  <input type="text" class="form-control" value="<?php echo $row['student_id'] ?>" required>
+                  <input type="text" class="form-control" name="s_no" value="<?php echo $row['student_id'] ?>" required>
                 </div>
                 <div class="form-group col-md-6">
                 <label for="">Address <span style="color: red;">*</span></label>
-                  <input type="text" class="form-control" required>
+                  <input type="text" class="form-control" name="address" required>
                 </div>
                 <div class="form-group col-md-4">
                 <label for="">Email Address <span style="color: red;">*</span></label>
-                  <input type="text" class="form-control" value="<?php echo $row['email'] ?>" required>
+                  <input type="text" class="form-control" name="email" value="<?php echo $row['email'] ?>" required>
                 </div>
                 <div class="form-group col-md-4">
                 <label for="">Batch Graduated <span style="color: red;">*</span></label>
@@ -124,24 +124,31 @@ if (!isset($_SESSION['user'])) {
                 <div class="form-group col-md-4">
                 <label for="">Gender <span style="color: red;">*</span></label>
                   <select name="gender" class="form-select" required>
-                      <option selected disabled="true"><?php echo $row['gender'] ?></option>
+                      <option selected value="<?php echo $row['gender'] ?>"><?php echo $row['gender'] ?></option>
                       <option>Male</option>
                       <option>Female</option>
                   </select>
                 </div>
                 <div class="form-group col-md-6">
                 <label for="">Types of Careers <span style="color: red;">*</span></label>
+            
                 <select name="career" class="form-select" id="id1" onchange="myFunction()" required>
-                      <option selected disabled="true">Select Carreer</option>
-                      <option value="1">Computer Science and Information Techonology</option>
-                      <option value="2">Education</option>
-                      <option value="3">Engineering</option>
-                      <option value="4">Business and Accountancy</option>
+                <option selected disabled="true">Select Carreer</option>
+                <?php 
+                 $querys = "SELECT * FROM tbl_fields";
+                 $results = mysqli_query($conn, $querys);
+                 while ($row = mysqli_fetch_array($results)) {
+                   
+                ?>
+                      <option value="<?php echo $row['field_name'] ?>">
+                      <?php echo $row['field_name'] ?></option>
+                     <?php }; ?>
                   </select>
+             
                 </div>
                 <div class="form-group col-md-6">
                 <label for="">Upload Resume <span style="color: red;">*</span></label>
-                  <input type="file" class="form-control">
+                  <input type="file" class="form-control" name="file" required>
                 </div>
                 <div class="form-group col-md-6" id="id2">
                   <label for="">Select at least 3</label>
@@ -238,7 +245,7 @@ if (!isset($_SESSION['user'])) {
               </div>
               <br>
               <div class="text-center">
-                <button type="submit" class="btn btn-success">Submit</button>
+                <button type="submit" name="form_submit" class="btn btn-success">Submit</button>
               </div>
               <br>
             </div>
@@ -258,10 +265,10 @@ if (!isset($_SESSION['user'])) {
       });
       function myFunction() {
           var x = document.getElementById("id1").value;
-          if (x == "1") document.getElementById("id2").style.display = "block", document.getElementById("id3").style.display = "none", document.getElementById("id4").style.display = "none", document.getElementById("id5").style.display = "none";
-          else if (x == "2") document.getElementById("id3").style.display = "block", document.getElementById("id2").style.display = "none", document.getElementById("id4").style.display = "none", document.getElementById("id5").style.display = "none" ;
-          else if (x == "3") document.getElementById("id4").style.display = "block", document.getElementById("id2").style.display = "none", document.getElementById("id3").style.display = "none", document.getElementById("id5").style.display = "none" ;
-          else if (x == "4") document.getElementById("id5").style.display = "block", document.getElementById("id2").style.display = "none", document.getElementById("id3").style.display = "none", document.getElementById("id4").style.display = "none" ;
+          if (x == "Computer Science and Information Technology") document.getElementById("id2").style.display = "block", document.getElementById("id3").style.display = "none", document.getElementById("id4").style.display = "none", document.getElementById("id5").style.display = "none";
+          else if (x == "Education") document.getElementById("id3").style.display = "block", document.getElementById("id2").style.display = "none", document.getElementById("id4").style.display = "none", document.getElementById("id5").style.display = "none" ;
+          else if (x == "Engineering") document.getElementById("id4").style.display = "block", document.getElementById("id2").style.display = "none", document.getElementById("id3").style.display = "none", document.getElementById("id5").style.display = "none" ;
+          else if (x == "Business and Accountancy") document.getElementById("id5").style.display = "block", document.getElementById("id2").style.display = "none", document.getElementById("id3").style.display = "none", document.getElementById("id4").style.display = "none" ;
       }
     </script>
 </body>

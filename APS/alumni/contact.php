@@ -79,13 +79,13 @@ if (!isset($_SESSION['user'])) {
   </div>
 
   <div class="custom-container" style="margin-top:3rem;">
-    <div class="text-center" data-aos="zoom-out" data-aos-duration="1000" data-aos-once="true">
+    <div class="text-center" data-aos="zoom-in" data-aos-duration="1000" data-aos-once="true">
     <h2>Contact us</h2>
     <h4>Don't be afraid to reach out. You + us = awesome.</h4>
     </div>
     <hr class="my-3">
     <br>
-    <div class="row" data-aos="zoom-out" data-aos-duration="1000" data-aos-once="true">
+    <div class="row" data-aos="zoom-in" data-aos-duration="1000" data-aos-once="true">
         <div class="col-sm-4" >
         <h4>Contact:</h4>
         <br>

@@ -2,10 +2,10 @@
 -- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Apr 23, 2022 at 08:28 PM
--- Server version: 10.4.21-MariaDB
--- PHP Version: 8.0.12
+-- Host: localhost: 3307
+-- Generation Time: Apr 30, 2022 at 05:41 PM
+-- Server version: 10.4.20-MariaDB
+-- PHP Version: 8.0.8
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -126,6 +126,48 @@ CREATE TABLE `tbl_event_commits` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `tbl_fields`
+--
+
+CREATE TABLE `tbl_fields` (
+  `field_id` int(11) NOT NULL,
+  `field_name` text DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `tbl_fields`
+--
+
+INSERT INTO `tbl_fields` (`field_id`, `field_name`) VALUES
+(1, 'Computer Science and Information Technology'),
+(2, 'Education'),
+(3, 'Engineering'),
+(4, 'Business and Accountancy');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_forms`
+--
+
+CREATE TABLE `tbl_forms` (
+  `id` int(11) NOT NULL,
+  `lastname` varchar(100) NOT NULL,
+  `firstname` varchar(100) NOT NULL,
+  `middlename` varchar(100) NOT NULL,
+  `student_no` varchar(100) NOT NULL,
+  `address` varchar(100) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `batch` int(11) NOT NULL,
+  `gender` varchar(100) NOT NULL,
+  `career` varchar(100) NOT NULL,
+  `field` varchar(100) NOT NULL,
+  `resume` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `tbl_forum_comments`
 --
 
@@ -179,7 +221,6 @@ CREATE TABLE `tbl_jobapplication` (
 INSERT INTO `tbl_jobapplication` (`Id`, `companyname`, `employer`, `jobtitle`, `details`) VALUES
 (15, 'MICROSOFT', 'Alexis Lingad', 'Software Engineer', 'The role of a software engineer includes designing and programming system-level software including operating systems, database systems and embedded systems. They understand how both software and hardware function. Software engineers are often found in electronics and telecommunications companies. A computing, software engineering or related degree is needed for a career in software engineering.'),
 (16, 'LinusTechTips', 'Linus Gabriel Sebastian', 'Network Engineer', 'Network engineering is one of the more technically demanding IT jobs. The role involves implementing, maintaining, supporting, developing and designing communication networks within an organisation, or between organisations. Network engineers are also responsible for security, data storage and disaster recovery strategies. A telecoms or computer science-related degree is needed.'),
-(17, 'GEOTECH', '	Jason Langevin', 'Software Tester', 'A software tester takes care of the quality assurance stage of software development and deployment. They conduct manual tests to ensure the software created by developers is fit for purpose. Testers can also be involved at the early stages of projects in order to anticipate pitfalls before work begins. Many software testers will be familiar with programming and using coding languages. Most software testers will have a degree in computer science or IT.'),
 (18, 'AMD', 'Lisa Su', 'President and Chief Executive Officer', 'AMD president and chief executive officer, a position she has held since October 2014, and serves on the AMD Board of Directors.');
 
 -- --------------------------------------------------------
@@ -190,10 +231,13 @@ INSERT INTO `tbl_jobapplication` (`Id`, `companyname`, `employer`, `jobtitle`, `
 
 CREATE TABLE `tbl_users` (
   `user_id` int(30) NOT NULL,
+  `student_id` varchar(100) NOT NULL,
   `username` varchar(200) NOT NULL,
   `password` text NOT NULL,
   `email` varchar(255) NOT NULL,
-  `fullname` text NOT NULL,
+  `firstname` varchar(100) NOT NULL,
+  `middlename` varchar(100) NOT NULL,
+  `lastname` varchar(100) NOT NULL,
   `gender` varchar(255) NOT NULL,
   `batch` year(4) NOT NULL,
   `course_id` int(30) NOT NULL,
@@ -207,9 +251,10 @@ CREATE TABLE `tbl_users` (
 -- Dumping data for table `tbl_users`
 --
 
-INSERT INTO `tbl_users` (`user_id`, `username`, `password`, `email`, `fullname`, `gender`, `batch`, `course_id`, `branch_id`, `type`, `is_verified`, `avatar_path`) VALUES
-(1, 'admin', '$2y$10$CfkyGS2piqCXjQkVGkPsiedGlcgEIiREgCWYW3OO2r2jDL2H1ll.G', 'keiz@gmail.com', 'Admin', 'Male', 2021, 1, 1, 'admin', 1, 'uploads/1639122180224141356_366504745012952_5880414480127360155_n.png'),
-(14, 'toni', '$2y$10$dYeuJHCC.YFyiwoNo8v.pOnNHNYfJqmfywuAQ0i48/759n3UxUNVW', 'jestoni.daguman0014@gmail.com', 'jestonidaguman', 'Male', 2022, 1, 1, 'alumni', 1, 'uploads/1650738323Learn-Japanese-From-Anime-3-.jpeg');
+INSERT INTO `tbl_users` (`user_id`, `student_id`, `username`, `password`, `email`, `firstname`, `middlename`, `lastname`, `gender`, `batch`, `course_id`, `branch_id`, `type`, `is_verified`, `avatar_path`) VALUES
+(1, '', 'admin', '$2y$10$CfkyGS2piqCXjQkVGkPsiedGlcgEIiREgCWYW3OO2r2jDL2H1ll.G', 'keiz@gmail.com', 'Admin', '', '', 'Male', 2021, 1, 1, 'admin', 1, 'uploads/1639122180224141356_366504745012952_5880414480127360155_n.png'),
+(14, '', 'toni', '$2y$10$dYeuJHCC.YFyiwoNo8v.pOnNHNYfJqmfywuAQ0i48/759n3UxUNVW', 'jestoni.daguman0014@gmail.com', 'jestonidaguman', '', '', 'Male', 2022, 1, 1, 'alumni', 1, 'uploads/1650738323Learn-Japanese-From-Anime-3-.jpeg'),
+(17, 'Student12345', 'ajnarag25', '$2y$10$rqALP7CM7PDWlmuXqTBbmOku/f4wZriLhfh5WGFIGscrWSsJCQiu.', 'ajnarag25@gmail.com', 'Avor john', 'Atienza', 'Narag', 'Male', 2020, 1, 2, 'alumni', 1, 'uploads/1651235813img_568656.png');
 
 --
 -- Indexes for dumped tables
@@ -252,6 +297,18 @@ ALTER TABLE `tbl_event_commits`
   ADD PRIMARY KEY (`id`),
   ADD KEY `fk_user` (`user_id`),
   ADD KEY `fk_event` (`event_id`);
+
+--
+-- Indexes for table `tbl_fields`
+--
+ALTER TABLE `tbl_fields`
+  ADD PRIMARY KEY (`field_id`);
+
+--
+-- Indexes for table `tbl_forms`
+--
+ALTER TABLE `tbl_forms`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `tbl_forum_comments`
@@ -322,6 +379,18 @@ ALTER TABLE `tbl_event_commits`
   MODIFY `id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
+-- AUTO_INCREMENT for table `tbl_fields`
+--
+ALTER TABLE `tbl_fields`
+  MODIFY `field_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `tbl_forms`
+--
+ALTER TABLE `tbl_forms`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `tbl_forum_comments`
 --
 ALTER TABLE `tbl_forum_comments`
@@ -343,7 +412,7 @@ ALTER TABLE `tbl_jobapplication`
 -- AUTO_INCREMENT for table `tbl_users`
 --
 ALTER TABLE `tbl_users`
-  MODIFY `user_id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `user_id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- Constraints for dumped tables
