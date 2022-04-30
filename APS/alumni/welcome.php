@@ -35,6 +35,7 @@ include_once 'get_user.php';
             <li><a href="home.php">Home</a></li>
 			<li><a href="about.php">About</a></li>
             <li><a href="apply.php">Apply for a job</a>
+			<li><a href="contact.php">Contact</a>
             <li><a href="profile.php"><?php echo $_SESSION['user']['username'];?></a></li>
 		</ul>
 	</div>

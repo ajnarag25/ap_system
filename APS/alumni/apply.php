@@ -16,7 +16,7 @@ if (!isset($_SESSION['user'])) {
     <link rel="stylesheet" href="transitions.css">
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <title>Job Opportunities</title>
+    <title>Apply for a Job</title>
 </head>
 <style>
   .white-bg{
@@ -24,7 +24,7 @@ if (!isset($_SESSION['user'])) {
     padding: 10px;
     border-radius: 10px;
   }
-  #id2, #id3 {
+  #id2, #id3, #id4, #id5 {
     display:none;
   }
   .card-custom{
@@ -59,6 +59,7 @@ if (!isset($_SESSION['user'])) {
             <li><a href="home.php">Home</a></li>
             <li><a href="about.php">About</a></li>
             <li><a href="apply.php">Apply for a job</a>
+            <li><a href="contact.php">Contact</a>
             <li><a href="profile.php"><?php echo $_SESSION['user']['username'];?></a>
             <div class="sub-menu">
               <ul>
@@ -122,7 +123,7 @@ if (!isset($_SESSION['user'])) {
                 </div>
                 <div class="form-group col-md-4">
                 <label for="">Gender <span style="color: red;">*</span></label>
-                  <select name="strand" id="b6" class="form-control" required>
+                  <select name="gender" class="form-select" required>
                       <option selected disabled="true"><?php echo $row['gender'] ?></option>
                       <option>Male</option>
                       <option>Female</option>
@@ -130,7 +131,7 @@ if (!isset($_SESSION['user'])) {
                 </div>
                 <div class="form-group col-md-6">
                 <label for="">Types of Careers <span style="color: red;">*</span></label>
-                <select name="strand" class="form-control" id="id1" onchange="myFunction()" required>
+                <select name="career" class="form-select" id="id1" onchange="myFunction()" required>
                       <option selected disabled="true">Select Carreer</option>
                       <option value="1">Computer Science and Information Techonology</option>
                       <option value="2">Education</option>
@@ -147,27 +148,97 @@ if (!isset($_SESSION['user'])) {
                   <br>
                   <div class="white-bg">
                     <div class="form-check ">
-                      <input class="form-check-input position-static" type="checkbox" id="blankCheckbox" value="option1" aria-label="...">
+                      <input class="form-check-input position-static" type="checkbox" id="blankCheckbox" value="Computer Programmer" aria-label="...">
                       <label class="form-check-label">Computer Programmer</label>
                       <br>
-                      <input class="form-check-input position-static" type="checkbox" id="blankCheckbox" value="option2" aria-label="...">
+                      <input class="form-check-input position-static" type="checkbox" id="blankCheckbox" value="Information Security Analyst" aria-label="...">
                       <label class="form-check-label">Information Security Analyst</label>
                       <br>
-                      <input class="form-check-input position-static" type="checkbox" id="blankCheckbox" value="option3" aria-label="...">
+                      <input class="form-check-input position-static" type="checkbox" id="blankCheckbox" value="Web Developer" aria-label="...">
                       <label class="form-check-label">Web Developer</label>
                       <br>
-                      <input class="form-check-input position-static" type="checkbox" id="blankCheckbox" value="option4" aria-label="...">
+                      <input class="form-check-input position-static" type="checkbox" id="blankCheckbox" value="Database Administrator" aria-label="...">
                       <label class="form-check-label">Database Administrator</label>
                       <br>
                       <input class="form-check-input position-static" type="checkbox" id="blankCheckbox" value="option5" aria-label="...">
-                      <label class="form-check-label">Others</label>
+                      <label class="form-check-label">Others: <input type="text" class="form-control" placeholder="Input field"></label>
                     </div>
                   </div>
                 </div>
+
+                <div class="form-group col-md-6" id="id3">
+                  <label for="">Select at least 3</label>
+                  <br>
+                  <div class="white-bg">
+                    <div class="form-check ">
+                      <input class="form-check-input position-static" type="checkbox" id="blankCheckbox" value="Teacher" aria-label="...">
+                      <label class="form-check-label">Teacher</label>
+                      <br>
+                      <input class="form-check-input position-static" type="checkbox" id="blankCheckbox" value="Education Administration" aria-label="...">
+                      <label class="form-check-label">Education Administration</label>
+                      <br>
+                      <input class="form-check-input position-static" type="checkbox" id="blankCheckbox" value="School Counseling" aria-label="...">
+                      <label class="form-check-label">School Counseling</label>
+                      <br>
+                      <input class="form-check-input position-static" type="checkbox" id="blankCheckbox" value="School Social Work" aria-label="...">
+                      <label class="form-check-label">School Social Work</label>
+                      <br>
+                      <input class="form-check-input position-static" type="checkbox" id="blankCheckbox" value="option5" aria-label="...">
+                      <label class="form-check-label">Others: <input type="text" class="form-control" placeholder="Input field"></label>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group col-md-6" id="id4">
+                  <label for="">Select at least 3</label>
+                  <br>
+                  <div class="white-bg">
+                    <div class="form-check ">
+                      <input class="form-check-input position-static" type="checkbox" id="blankCheckbox" value="Civil Engineering1" aria-label="...">
+                      <label class="form-check-label">Civil Engineering</label>
+                      <br>
+                      <input class="form-check-input position-static" type="checkbox" id="blankCheckbox" value="Mechanical Engineering" aria-label="...">
+                      <label class="form-check-label">Mechanical Engineering</label>
+                      <br>
+                      <input class="form-check-input position-static" type="checkbox" id="blankCheckbox" value="Electrical Engineering" aria-label="...">
+                      <label class="form-check-label">Electrical Engineering</label>
+                      <br>
+                      <input class="form-check-input position-static" type="checkbox" id="blankCheckbox" value="Computer Engineering" aria-label="...">
+                      <label class="form-check-label">Computer Engineering</label>
+                      <br>
+                      <input class="form-check-input position-static" type="checkbox" id="blankCheckbox" value="option5" aria-label="...">
+                      <label class="form-check-label">Others: <input type="text" class="form-control" placeholder="Input field"></label>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group col-md-6" id="id5">
+                  <label for="">Select at least 3</label>
+                  <br>
+                  <div class="white-bg">
+                    <div class="form-check ">
+                      <input class="form-check-input position-static" type="checkbox" id="blankCheckbox" value="Public Accountant" aria-label="...">
+                      <label class="form-check-label">Public Accountant</label>
+                      <br>
+                      <input class="form-check-input position-static" type="checkbox" id="blankCheckbox" value="Tax Accountant" aria-label="...">
+                      <label class="form-check-label">Tax Accountant</label>
+                      <br>
+                      <input class="form-check-input position-static" type="checkbox" id="blankCheckbox" value="Manegerial Accountant" aria-label="...">
+                      <label class="form-check-label">Manegerial Accountant</label>
+                      <br>
+                      <input class="form-check-input position-static" type="checkbox" id="blankCheckbox" value="Financial Planner" aria-label="...">
+                      <label class="form-check-label">Financial Planner</label>
+                      <br>
+                      <input class="form-check-input position-static" type="checkbox" id="blankCheckbox" value="others" aria-label="...">
+                      <label class="form-check-label">Others: <input type="text" class="form-control" placeholder="Input field"></label>
+                    </div>
+                  </div>
+                </div>
+
               </div>
               <br>
               <div class="text-center">
-                <button type="submit required" class="btn btn-success">Submit</button>
+                <button type="submit" class="btn btn-success">Submit</button>
               </div>
               <br>
             </div>
@@ -187,7 +258,10 @@ if (!isset($_SESSION['user'])) {
       });
       function myFunction() {
           var x = document.getElementById("id1").value;
-          if (x == "1") document.getElementById("id2").style.display = "block";
+          if (x == "1") document.getElementById("id2").style.display = "block", document.getElementById("id3").style.display = "none", document.getElementById("id4").style.display = "none", document.getElementById("id5").style.display = "none";
+          else if (x == "2") document.getElementById("id3").style.display = "block", document.getElementById("id2").style.display = "none", document.getElementById("id4").style.display = "none", document.getElementById("id5").style.display = "none" ;
+          else if (x == "3") document.getElementById("id4").style.display = "block", document.getElementById("id2").style.display = "none", document.getElementById("id3").style.display = "none", document.getElementById("id5").style.display = "none" ;
+          else if (x == "4") document.getElementById("id5").style.display = "block", document.getElementById("id2").style.display = "none", document.getElementById("id3").style.display = "none", document.getElementById("id4").style.display = "none" ;
       }
     </script>
 </body>
