@@ -21,7 +21,7 @@ if ($_SERVER ["REQUEST_METHOD"]== "POST") {
             if(password_verify($password, $user->password)){
                if($user->type=='admin'){
                 $_SESSION['user']=$user;
-                header('Location: adminpage.php');
+                header('Location: main.php');
                }
 
             }else{
@@ -36,23 +36,7 @@ if ($_SERVER ["REQUEST_METHOD"]== "POST") {
         window.location = \"index.php\"
         </script>";
      }
-    // $stmt = $conn->prepare("SELECT * FROM adminlogin");
-    // $stmt->execute();
-    // $users = $stmt->fetchAll();
 
-    // foreach($users as $user) {
-
-    //     if(($user['adminname'] == $adminname) &&
-    //          ($user['password'] == $password)){
-    //              header("Location: adminpage.php");
-    //          }
-    //          else{
-    //              echo "<script language='javascript'>";
-    //              echo "alert('WRONG INFORMATION')";
-    //              echo "</script>";
-    //              die();
-    //          }
-    // }
 }
 
 ?>

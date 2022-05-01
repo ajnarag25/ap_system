@@ -26,6 +26,10 @@ if (isset($_POST['form_submit'])) {
      VALUES ('$firstname', '$middlename', '$lastname', '$student_no', '$address', '$email', '$batch', '$gender', '$career', 'none', '$file')";
 
     $query=mysqli_query($conn,$sql);
+    echo "<script type=\"text/javascript\">
+    alert(\"Successfully Submitted\");
+    window.location = \"apply.php\"
+    </script>";
 
   }
 
