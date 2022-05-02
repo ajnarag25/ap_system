@@ -75,7 +75,7 @@ if (!isset($_SESSION['user'])) {
     <div class="backdrop">
 
       <div class="text-center">
-        <h2 data-aos="zoom-out" data-aos-duration="1000" data-aos-once="true">Submit Form</h2>
+        <h2 data-aos="zoom-out" data-aos-duration="1000" data-aos-once="true" id="form">Submit Form</h2>
       </div>
       <hr class="my-3">
         <div class="card-custom" data-aos="zoom-in" data-aos-duration="1000" data-aos-once="true">

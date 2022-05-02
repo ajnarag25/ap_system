@@ -170,35 +170,28 @@
                                             </td>
                                           </tr>
                                         </tbody>
-                                        
-                                        <!-- Modal Verify -->
-                                        <div class="modal fade" id="verifyModal<?php echo $row['user_id'] ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                        <div class="modal-dialog">
+
+                                         <!-- Modal Delete-->
+                                         <div class="modal fade" id="deleteModal<?php echo $row['user_id'] ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog">
                                             <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title" id="exampleModalLabel">Verification</h5>
+                                                <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel">Delete User <?php echo $row['firstname'] ?></h5>
                                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                            </div>
-                                            <form action="functions.php" method="POST">
+                                                </div>
                                                 <div class="modal-body">
-                                                    <?php 
-                                                    if ($row['is_verified'] == 1){
-                                                        echo "<h3>This User is already verified!</h3>";
-                                                    }else{
-                                                        echo "<h3>Verify now this user?".' '.$row['firstname']."</h3>";
-                                                    }
-                                                    ?>
+                                                <p>Are you sure you want to delete this user?</p>
                                                 </div>
                                                 <div class="modal-footer">
-                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                                    <a class="btn btn-success" style="color:white" href="functions.php?verify=<?php echo $row["user_id"] ?>">Verify</a>
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                                <a class="btn btn-danger" style="color:white" href="functions.php?delete=<?php echo $row["user_id"] ?>">Delete</a>
                                                 </div>
-                                            </form>
+                                            </div>
                                             </div>
                                         </div>
-
-                                        <!-- Modal Edit -->
-                                        <div class="modal fade" id="editModal<?php echo $row['user_id'] ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        
+                                         <!-- Modal Edit -->
+                                         <div class="modal fade" id="editModal<?php echo $row['user_id'] ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                         <div class="modal-dialog">
                                             <div class="modal-content">
                                             <div class="modal-header">
@@ -230,22 +223,29 @@
                                         </div>
                                         </div>
 
-                                        <!-- Modal Delete-->
-                                        <div class="modal fade" id="deleteModal<?php echo $row['user_id'] ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                            <div class="modal-dialog">
+                                        <!-- Modal Verify -->
+                                        <div class="modal fade" id="verifyModal<?php echo $row['user_id'] ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
                                             <div class="modal-content">
-                                                <div class="modal-header">
-                                                <h5 class="modal-title" id="exampleModalLabel">Delete User <?php echo $row['firstname'] ?></h5>
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel">Verification</h5>
                                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                </div>
+                                            </div>
+                                            <form action="functions.php" method="POST">
                                                 <div class="modal-body">
-                                                <p>Are you sure you want to delete this user?</p>
+                                                    <?php 
+                                                    if ($row['is_verified'] == 1){
+                                                        echo "<h3>This User is already verified!</h3>";
+                                                    }else{
+                                                        echo "<h3>Verify now this user?".' '.$row['firstname']."</h3>";
+                                                    }
+                                                    ?>
                                                 </div>
                                                 <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                                                <a class="btn btn-danger" style="color:white" href="functions.php?delete=<?php echo $row["user_id"] ?>">Delete</a>
+                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                    <a class="btn btn-success" style="color:white" href="functions.php?verify=<?php echo $row["user_id"] ?>">Verify</a>
                                                 </div>
-                                            </div>
+                                            </form>
                                             </div>
                                         </div>
 
