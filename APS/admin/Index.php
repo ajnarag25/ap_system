@@ -6,11 +6,14 @@
 
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
-	<link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="transitions.css">
+	<link rel="stylesheet" href="dist/css/styles.css">
+    <link rel="stylesheet" href="dist/css/transitions.css">
 	<title>Login - Admin</title>
 </head>
 <style>
+	body{
+		background-image: linear-gradient(rgba(0,0,0,.5), rgba(0,0,0,.5)), url(assets/images/qcufront.jpg);
+	}
 	.container{
 		width: 400px;
 		min-height: 450px;

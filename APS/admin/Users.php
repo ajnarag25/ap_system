@@ -8,7 +8,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="noindex,nofollow">
-    <title>ALUMNI PLACEMENT SYSTEM - Profile</title>
+    <title>ALUMNI PLACEMENT SYSTEM - Users</title>
     <link rel="canonical" href="https://www.wrappixel.com/templates/niceadmin-lite/" />
     <link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicon.png">
     <link href="dist/css/style.min.css" rel="stylesheet">
@@ -64,7 +64,7 @@
                             <ul class="dropdown-menu dropdown-menu-end user-dd animated" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" href="profile.php"><i class="ti-user me-1 ms-1"></i>
                                     My Profile</a>
-                                <a class="dropdown-item" href="index.php"><i class="ti-shift-right me-1 ms-1"></i>
+                                <a class="dropdown-item" href="logout.php"><i class="ti-shift-right me-1 ms-1"></i>
                                     Logout</a>
                             </ul>
                         </li>
@@ -148,21 +148,107 @@
                                             $query = "SELECT * FROM tbl_users ";
                                             $result = mysqli_query($conn, $query);
                                             while ($row = mysqli_fetch_array($result)) {
+
+                                            if ($row['is_verified'] == 1){
+                                                $setverify = 'Verified';
+                                            }else{
+                                                $setverify = 'Unverified';
+                                            } 
                                         ?>
                                           <tr>
                                             <th><?php echo $row['user_id']; ?></th>
                                             <td><img src="../alumni/<?php echo $row['avatar_path']; ?>" width="50" alt=""></td>
                                             <td><?php echo $row['student_id']; ?></td>
-                                            <td><?php echo $row['firstname']; ?></td>
+                                            <td><?php echo $row['firstname']. ' '. $row['middlename'].' '.$row['lastname']; ?></td>
                                             <td><?php echo $row['username']; ?></td>
                                             <td><?php echo $row['type']; ?></td>
-                                            <td><?php echo $row['is_verified']; ?></td>
+                                            <td><?php echo $setverify ; ?></td>
                                             <td>
-                                                <button class="btn btn-primary"> <i class="mdi mdi-pencil"></i></button>
-                                                <button class="btn btn-danger" style="color:white"> <i class="mdi mdi-delete"></i></button>
+                                                <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#verifyModal<?php echo $row['user_id'] ?>"> <i class="mdi mdi-check"></i></button>
+                                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editModal<?php echo $row['user_id'] ?>"> <i class="mdi mdi-pencil"></i></button>
+                                                <button type="button" class="btn btn-danger" style="color:white" data-bs-toggle="modal" data-bs-target="#deleteModal<?php echo $row['user_id'] ?>"> <i class="mdi mdi-delete"></i></button>
                                             </td>
                                           </tr>
                                         </tbody>
+                                        
+                                        <!-- Modal Verify -->
+                                        <div class="modal fade" id="verifyModal<?php echo $row['user_id'] ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel">Verification</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <form action="functions.php" method="POST">
+                                                <div class="modal-body">
+                                                    <?php 
+                                                    if ($row['is_verified'] == 1){
+                                                        echo "<h3>This User is already verified!</h3>";
+                                                    }else{
+                                                        echo "<h3>Verify now this user?".' '.$row['firstname']."</h3>";
+                                                    }
+                                                    ?>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                    <a class="btn btn-success" style="color:white" href="functions.php?verify=<?php echo $row["user_id"] ?>">Verify</a>
+                                                </div>
+                                            </form>
+                                            </div>
+                                        </div>
+
+                                        <!-- Modal Edit -->
+                                        <div class="modal fade" id="editModal<?php echo $row['user_id'] ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel">Edit Details for User: <?php echo $row['firstname'] ?></h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <form action="functions.php" method="POST">
+                                                <div class="modal-body">
+                                                    <input type="hidden" name="id" value="<?php echo $row['user_id'] ?>">
+                                                    <label for="">Firstname</label>
+                                                    <input type="text" class="form-control" name="fname" value="<?php echo $row['firstname'] ?>">
+                                                    <label for="">Middlename</label>
+                                                    <input type="text" class="form-control" name="mname" value="<?php echo $row['middlename'] ?>">
+                                                    <label for="">Lastname</label>
+                                                    <input type="text" class="form-control" name="lname" value="<?php echo $row['lastname'] ?>">
+                                                    <label for="">Username</label>
+                                                    <input type="text" class="form-control" name="uname" value="<?php echo $row['username'] ?>">
+                                                    <label for="">Student Number</label>
+                                                    <input type="text" class="form-control" name="sno" value="<?php echo $row['student_id'] ?>">
+                                                    <label for="">Email</label>
+                                                    <input type="text" class="form-control" name="mail" value="<?php echo $row['email'] ?>">
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                    <button type="submit" class="btn btn-primary" name="save">Save changes</button>
+                                                </div>
+                                            </form>
+                                            </div>
+                                        </div>
+                                        </div>
+
+                                        <!-- Modal Delete-->
+                                        <div class="modal fade" id="deleteModal<?php echo $row['user_id'] ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel">Delete User <?php echo $row['firstname'] ?></h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                <p>Are you sure you want to delete this user?</p>
+                                                </div>
+                                                <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                                <a class="btn btn-danger" style="color:white" href="functions.php?delete=<?php echo $row["user_id"] ?>">Delete</a>
+                                                </div>
+                                            </div>
+                                            </div>
+                                        </div>
+
                                         <?php }; ?>
 
                                       </table>
@@ -179,7 +265,6 @@
                     </div>
                 </div>
             </div>
-          
 
             <footer class="footer text-center">
                 ALUMNI PLACEMENT SYSTEM

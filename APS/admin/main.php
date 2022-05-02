@@ -64,7 +64,7 @@
                             <ul class="dropdown-menu dropdown-menu-end user-dd animated" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" href="profile.php"><i class="ti-user me-1 ms-1"></i>
                                     My Profile</a>
-                                <a class="dropdown-item" href="index.php"><i class="ti-shift-right me-1 ms-1"></i>
+                                <a class="dropdown-item" href="logout.php"><i class="ti-shift-right me-1 ms-1"></i>
                                     Logout</a>
                             </ul>
                         </li>
