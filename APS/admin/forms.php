@@ -132,31 +132,95 @@
                                         <thead class="thead-dark">
                                           <tr>
                                             <th scope="col">#</th>
-                                            <th scope="col">Company Name</th>
-                                            <th scope="col">Employer</th>
-                                            <th scope="col">Job title</th>
-                                            <th scope="col">Details</th>
+                                            <th scope="col">Fullname</th>
+                                            <th scope="col">Student no.</th>
+                                            <th scope="col">Address</th>
+                                            <th scope="col">Email</th>
+                                            <th scope="col">Batch</th>
+                                            <th scope="col">Gender</th>
+                                            <th scope="col">Career</th>
+                                            <th scope="col">Field</th>
+                                            <th scope="col">File</th>
                                             <th scope="col">Action</th>
                                           </tr>
                                         </thead>
                                         <tbody>
                                         <?php 
-                                            $query = "SELECT * FROM tbl_jobapplication ";
+                                            $query = "SELECT * FROM tbl_forms ";
                                             $result = mysqli_query($conn, $query);
                                             while ($row = mysqli_fetch_array($result)) {
                                         ?>
 
                                           <tr>
-                                            <th><?php echo $row['Id']; ?></th>
-                                            <td><?php echo $row['companyname']; ?></td>
-                                            <td><?php echo $row['employer']; ?></td>
-                                            <th><?php echo $row['jobtitle']; ?></th>
-                                            <th><?php echo $row['details']; ?></th>
+                                            <th><?php echo $row['id']; ?></th>
+                                            <td><?php echo $row['lastname'].' '. $row['firstname'].' '. $row['middlename']; ?></td>
+                                            <td><?php echo $row['student_no']; ?></td>
+                                            <th><?php echo $row['address']; ?></th>
+                                            <th><?php echo $row['email']; ?></th>
+                                            <th><?php echo $row['batch']; ?></th>
+                                            <th><?php echo $row['gender']; ?></th>
+                                            <th><?php echo $row['career']; ?></th>
+                                            <th><?php echo $row['field']; ?></th>
+                                            <th><?php echo $row['resume']; ?></th>
                                             <td>
-                                                <button class="btn btn-primary"> <i class="mdi mdi-pencil"></i></button>
-                                                <button class="btn btn-danger" style="color:white"> <i class="mdi mdi-delete"></i></button>
+                                                <button class="btn btn-primary" data-bs-toggle="modal"  data-bs-target="#editModal<?php echo $row['id']?>"> <i class="mdi mdi-pencil"></i></button>
+                                                <a href="functions.php?file=<?php echo $row['resume']; ?>" class="btn btn-warning"><i class="mdi mdi-arrow-down"></i></a>
+                                                <button class="btn btn-danger" style="color:white" data-bs-toggle="modal"  data-bs-target="#deleteModal<?php echo $row['id'] ?>"> <i class="mdi mdi-delete"></i></button>
                                             </td>
                                           </tr>
+                                        
+
+                                           <!-- Modal Edit -->
+                                         <div class="modal fade" id="editModal<?php echo $row['id']?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel">Edit Details for User: <?php echo $row['firstname'] ?></h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <form action="functions.php" method="POST">
+                                                <div class="modal-body">
+                                                    <input type="hidden" name="id" value="<?php echo $row['id'] ?>">
+                                                    <label for="">Firstname</label>
+                                                    <input type="text" class="form-control" name="fname" value="<?php echo $row['firstname'] ?>">
+                                                    <label for="">Middlename</label>
+                                                    <input type="text" class="form-control" name="mname" value="<?php echo $row['middlename'] ?>">
+                                                    <label for="">Lastname</label>
+                                                    <input type="text" class="form-control" name="lname" value="<?php echo $row['lastname'] ?>">
+                                                    <label for="">Address</label>
+                                                    <input type="text" class="form-control" name="address" value="<?php echo $row['address'] ?>">
+                                                    <label for="">Student Number</label>
+                                                    <input type="text" class="form-control" name="sno" value="<?php echo $row['student_no'] ?>">
+                                                    <label for="">Email</label>
+                                                    <input type="text" class="form-control" name="mail" value="<?php echo $row['email'] ?>">
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                    <button type="submit" class="btn btn-primary" name="updateForm">Save changes</button>
+                                                </div>
+                                            </form>
+                                            </div>
+                                        </div>
+                                        </div>
+
+                                        <!-- Modal Delete-->
+                                        <div class="modal fade" id="deleteModal<?php echo $row['id'] ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel">Delete User <?php echo $row['firstname'] ?></h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                <h4>Are you sure you want to delete this user?</h4>
+                                                </div>
+                                                <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                                <a class="btn btn-danger" style="color:white" href="functions.php?deleteForm=<?php echo $row["id"] ?>">Delete</a>
+                                                </div>
+                                            </div>
+                                            </div>
+                                        </div>
 
                                         </tbody>
                                         <?php }; ?>
@@ -164,7 +228,7 @@
                                       </table>
                                       <br>
                                       <?php 
-                                        $sql = "SELECT * FROM tbl_jobapplication ";
+                                        $sql = "SELECT * FROM tbl_forms ";
                                         $result=mysqli_query($conn, $sql);
                                         $row = mysqli_num_rows($result);
                                     ?>

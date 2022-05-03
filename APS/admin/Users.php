@@ -180,7 +180,7 @@
                                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                 </div>
                                                 <div class="modal-body">
-                                                <p>Are you sure you want to delete this user?</p>
+                                                <h4>Are you sure you want to delete this user?</h4>
                                                 </div>
                                                 <div class="modal-footer">
                                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
@@ -235,9 +235,9 @@
                                                 <div class="modal-body">
                                                     <?php 
                                                     if ($row['is_verified'] == 1){
-                                                        echo "<h3>This User is already verified!</h3>";
+                                                        echo "<h4>This User is already verified!</h4>";
                                                     }else{
-                                                        echo "<h3>Verify now this user?".' '.$row['firstname']."</h3>";
+                                                        echo "<h4>Verify now this user?".' '.$row['firstname']."</h4>";
                                                     }
                                                     ?>
                                                 </div>

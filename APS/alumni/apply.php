@@ -95,15 +95,15 @@ if (!isset($_SESSION['user'])) {
             <div class="form-row">
               <div class="form-group col-md-4">
                 <label for="">Last Name <span style="color: red;">*</span></label>
-                  <input type="text" class="form-control" name="fname" value="<?php echo $row['firstname'] ?>" required>
+                  <input type="text" class="form-control" name="lname" value="<?php echo $row['lastname'] ?>" required>
                 </div>
                 <div class="form-group col-md-4">
                 <label for="">First Name <span style="color: red;">*</span></label>
-                  <input type="text" class="form-control" name="mname" value="<?php echo $row['middlename'] ?>" required>
+                  <input type="text" class="form-control" name="fname" value="<?php echo $row['firstname'] ?>" required>
                 </div>
                 <div class="form-group col-md-4">
                 <label for="">Middle Name <span style="color: red;">*</span></label>
-                  <input type="text" class="form-control" name="lname" value="<?php echo $row['lastname'] ?>" required>
+                  <input type="text" class="form-control" name="mname" value="<?php echo $row['middlename'] ?>" required>
                 </div>
                 <div class="form-group col-md-6">
                 <label for="">Student Number <span style="color: red;">*</span></label>
@@ -155,20 +155,19 @@ if (!isset($_SESSION['user'])) {
                   <br>
                   <div class="white-bg">
                     <div class="form-check ">
-                      <input class="form-check-input position-static" type="checkbox" id="blankCheckbox" value="Computer Programmer" aria-label="...">
-                      <label class="form-check-label">Computer Programmer</label>
-                      <br>
-                      <input class="form-check-input position-static" type="checkbox" id="blankCheckbox" value="Information Security Analyst" aria-label="...">
-                      <label class="form-check-label">Information Security Analyst</label>
-                      <br>
-                      <input class="form-check-input position-static" type="checkbox" id="blankCheckbox" value="Web Developer" aria-label="...">
-                      <label class="form-check-label">Web Developer</label>
-                      <br>
-                      <input class="form-check-input position-static" type="checkbox" id="blankCheckbox" value="Database Administrator" aria-label="...">
-                      <label class="form-check-label">Database Administrator</label>
-                      <br>
-                      <input class="form-check-input position-static" type="checkbox" id="blankCheckbox" value="option5" aria-label="...">
-                      <label class="form-check-label">Others: <input type="text" class="form-control" placeholder="Input field"></label>
+                      <div id="set1">
+                        <input class="form-check-input position-static" type="checkbox" name="f1[]" id="c1" value="Computer Programmer" aria-label="...">
+                        <label class="form-check-label">Computer Programmer</label>
+                        <br>
+                        <input class="form-check-input position-static" type="checkbox" name="f1[]" id="c1" value="Information Security Analyst" aria-label="...">
+                        <label class="form-check-label">Information Security Analyst</label>
+                        <br>
+                        <input class="form-check-input position-static" type="checkbox" name="f1[]" id="c1" value="Web Developer" aria-label="...">
+                        <label class="form-check-label">Web Developer</label>
+                        <br>
+                        <input class="form-check-input position-static" type="checkbox" name="f1[]" id="c1" value="Database Administrator" aria-label="...">
+                        <label class="form-check-label">Database Administrator</label>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -178,20 +177,19 @@ if (!isset($_SESSION['user'])) {
                   <br>
                   <div class="white-bg">
                     <div class="form-check ">
-                      <input class="form-check-input position-static" type="checkbox" id="blankCheckbox" value="Teacher" aria-label="...">
-                      <label class="form-check-label">Teacher</label>
-                      <br>
-                      <input class="form-check-input position-static" type="checkbox" id="blankCheckbox" value="Education Administration" aria-label="...">
-                      <label class="form-check-label">Education Administration</label>
-                      <br>
-                      <input class="form-check-input position-static" type="checkbox" id="blankCheckbox" value="School Counseling" aria-label="...">
-                      <label class="form-check-label">School Counseling</label>
-                      <br>
-                      <input class="form-check-input position-static" type="checkbox" id="blankCheckbox" value="School Social Work" aria-label="...">
-                      <label class="form-check-label">School Social Work</label>
-                      <br>
-                      <input class="form-check-input position-static" type="checkbox" id="blankCheckbox" value="option5" aria-label="...">
-                      <label class="form-check-label">Others: <input type="text" class="form-control" placeholder="Input field"></label>
+                      <div id="set2">
+                        <input class="form-check-input position-static" type="checkbox" name="f1[]" id="c2" value="Teacher" aria-label="...">
+                        <label class="form-check-label">Teacher</label>
+                        <br>
+                        <input class="form-check-input position-static" type="checkbox" name="f1[]" id="c2" value="Education Administration" aria-label="...">
+                        <label class="form-check-label">Education Administration</label>
+                        <br>
+                        <input class="form-check-input position-static" type="checkbox" name="f1[]" id="c2" value="School Counseling" aria-label="...">
+                        <label class="form-check-label">School Counseling</label>
+                        <br>
+                        <input class="form-check-input position-static" type="checkbox" name="f1[]" id="c2" value="School Social Work" aria-label="...">
+                        <label class="form-check-label">School Social Work</label>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -201,20 +199,19 @@ if (!isset($_SESSION['user'])) {
                   <br>
                   <div class="white-bg">
                     <div class="form-check ">
-                      <input class="form-check-input position-static" type="checkbox" id="blankCheckbox" value="Civil Engineering1" aria-label="...">
-                      <label class="form-check-label">Civil Engineering</label>
-                      <br>
-                      <input class="form-check-input position-static" type="checkbox" id="blankCheckbox" value="Mechanical Engineering" aria-label="...">
-                      <label class="form-check-label">Mechanical Engineering</label>
-                      <br>
-                      <input class="form-check-input position-static" type="checkbox" id="blankCheckbox" value="Electrical Engineering" aria-label="...">
-                      <label class="form-check-label">Electrical Engineering</label>
-                      <br>
-                      <input class="form-check-input position-static" type="checkbox" id="blankCheckbox" value="Computer Engineering" aria-label="...">
-                      <label class="form-check-label">Computer Engineering</label>
-                      <br>
-                      <input class="form-check-input position-static" type="checkbox" id="blankCheckbox" value="option5" aria-label="...">
-                      <label class="form-check-label">Others: <input type="text" class="form-control" placeholder="Input field"></label>
+                      <div id="set3">
+                        <input class="form-check-input position-static" type="checkbox" name="f1[]" id="c3" value="Civil Engineering1" aria-label="...">
+                        <label class="form-check-label">Civil Engineering</label>
+                        <br>
+                        <input class="form-check-input position-static" type="checkbox" name="f1[]" id="c3" value="Mechanical Engineering" aria-label="...">
+                        <label class="form-check-label">Mechanical Engineering</label>
+                        <br>
+                        <input class="form-check-input position-static" type="checkbox" name="f1[]" id="c3" value="Electrical Engineering" aria-label="...">
+                        <label class="form-check-label">Electrical Engineering</label>
+                        <br>
+                        <input class="form-check-input position-static" type="checkbox" name="f1[]" id="c3" value="Computer Engineering" aria-label="...">
+                        <label class="form-check-label">Computer Engineering</label>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -224,20 +221,19 @@ if (!isset($_SESSION['user'])) {
                   <br>
                   <div class="white-bg">
                     <div class="form-check ">
-                      <input class="form-check-input position-static" type="checkbox" id="blankCheckbox" value="Public Accountant" aria-label="...">
-                      <label class="form-check-label">Public Accountant</label>
-                      <br>
-                      <input class="form-check-input position-static" type="checkbox" id="blankCheckbox" value="Tax Accountant" aria-label="...">
-                      <label class="form-check-label">Tax Accountant</label>
-                      <br>
-                      <input class="form-check-input position-static" type="checkbox" id="blankCheckbox" value="Manegerial Accountant" aria-label="...">
-                      <label class="form-check-label">Manegerial Accountant</label>
-                      <br>
-                      <input class="form-check-input position-static" type="checkbox" id="blankCheckbox" value="Financial Planner" aria-label="...">
-                      <label class="form-check-label">Financial Planner</label>
-                      <br>
-                      <input class="form-check-input position-static" type="checkbox" id="blankCheckbox" value="others" aria-label="...">
-                      <label class="form-check-label">Others: <input type="text" class="form-control" placeholder="Input field"></label>
+                      <div id="set4">
+                        <input class="form-check-input position-static" type="checkbox" name="f1[]" id="c4" value="Public Accountant" aria-label="...">
+                        <label class="form-check-label">Public Accountant</label>
+                        <br>
+                        <input class="form-check-input position-static" type="checkbox" name="f1[]" id="c4" value="Tax Accountant" aria-label="...">
+                        <label class="form-check-label">Tax Accountant</label>
+                        <br>
+                        <input class="form-check-input position-static" type="checkbox" name="f1[]" id="c4" value="Manegerial Accountant" aria-label="...">
+                        <label class="form-check-label">Manegerial Accountant</label>
+                        <br>
+                        <input class="form-check-input position-static" type="checkbox" name="f1[]" id="c4" value="Financial Planner" aria-label="...">
+                        <label class="form-check-label">Financial Planner</label>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -259,6 +255,10 @@ if (!isset($_SESSION['user'])) {
 	</div>
 	<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     <script>
+      checkBoxLimit1()
+      checkBoxLimit2()
+      checkBoxLimit3()
+      checkBoxLimit4()
       AOS.init({
         duration: 3000,
         once: true,
@@ -270,6 +270,75 @@ if (!isset($_SESSION['user'])) {
           else if (x == "Engineering") document.getElementById("id4").style.display = "block", document.getElementById("id2").style.display = "none", document.getElementById("id3").style.display = "none", document.getElementById("id5").style.display = "none" ;
           else if (x == "Business and Accountancy") document.getElementById("id5").style.display = "block", document.getElementById("id2").style.display = "none", document.getElementById("id3").style.display = "none", document.getElementById("id4").style.display = "none" ;
       }
+      function checkBoxLimit1() {
+          var checkBoxGroup = document.getElementById('set1').getElementsByTagName("input");			
+          var limit = 3;
+          for (var i = 0; i < checkBoxGroup.length; i++) {
+            checkBoxGroup[i].onclick = function() {
+              var checkedcount = 0;
+              for (var i = 0; i < checkBoxGroup.length; i++) {
+                checkedcount += (checkBoxGroup[i].checked) ? 1 : 0;
+              }
+              if (checkedcount > limit) {
+                console.log("You can select maximum of " + limit + " checkboxes.");
+                alert("You can select maximum of " + limit + " checkboxes.");						
+                this.checked = false;
+              }
+            }
+          }
+        }
+        function checkBoxLimit2() {
+          var checkBoxGroup = document.getElementById('set2').getElementsByTagName("input");			
+          var limit = 3;
+          for (var i = 0; i < checkBoxGroup.length; i++) {
+            checkBoxGroup[i].onclick = function() {
+              var checkedcount = 0;
+              for (var i = 0; i < checkBoxGroup.length; i++) {
+                checkedcount += (checkBoxGroup[i].checked) ? 1 : 0;
+              }
+              if (checkedcount > limit) {
+                console.log("You can select maximum of " + limit + " checkboxes.");
+                alert("You can select maximum of " + limit + " checkboxes.");						
+                this.checked = false;
+              }
+            }
+          }
+        }
+        function checkBoxLimit3() {
+          var checkBoxGroup = document.getElementById('set3').getElementsByTagName("input");			
+          var limit = 3;
+          for (var i = 0; i < checkBoxGroup.length; i++) {
+            checkBoxGroup[i].onclick = function() {
+              var checkedcount = 0;
+              for (var i = 0; i < checkBoxGroup.length; i++) {
+                checkedcount += (checkBoxGroup[i].checked) ? 1 : 0;
+              }
+              if (checkedcount > limit) {
+                console.log("You can select maximum of " + limit + " checkboxes.");
+                alert("You can select maximum of " + limit + " checkboxes.");						
+                this.checked = false;
+              }
+            }
+          }
+        }
+        function checkBoxLimit4() {
+          var checkBoxGroup = document.getElementById('set4').getElementsByTagName("input");			
+          var limit = 3;
+          for (var i = 0; i < checkBoxGroup.length; i++) {
+            checkBoxGroup[i].onclick = function() {
+              var checkedcount = 0;
+              for (var i = 0; i < checkBoxGroup.length; i++) {
+                checkedcount += (checkBoxGroup[i].checked) ? 1 : 0;
+              }
+              if (checkedcount > limit) {
+                console.log("You can select maximum of " + limit + " checkboxes.");
+                alert("You can select maximum of " + limit + " checkboxes.");						
+                this.checked = false;
+              }
+            }
+          }
+        }
+
     </script>
 </body>
 </html>

@@ -152,7 +152,12 @@
                                     <img src="assets/images/notepad.png" width="85" alt="">
                                     <br><br>
                                     <h2 class="card-title">Submitted Forms</h2>
-                                    <h2>1</h2>
+                                    <?php 
+                                       $sql = "SELECT * FROM tbl_forms";
+                                       $result=mysqli_query($conn, $sql);
+                                       $row = mysqli_num_rows($result);
+                                    ?>
+                                    <h2><?php echo $row; ?></h2>     
                                 </div>
                             </div>
                         </div>

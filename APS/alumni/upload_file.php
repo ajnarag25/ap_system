@@ -13,6 +13,7 @@ if (isset($_POST['form_submit'])) {
     $batch = $_POST['batch'];
     $gender = $_POST['gender'];
     $career = $_POST['career'];
+    $field = $_POST['f1'];
     
     $file=$_FILES['file']['name'];
     $file_type=$_FILES['file']['type'];
@@ -21,9 +22,12 @@ if (isset($_POST['form_submit'])) {
     $file_store="files/".$file;
 
     move_uploaded_file($file_tem_loc,$file_store);
-
+    $chk="";  
+    foreach($field as $chk1)  {  
+          $chk .= $chk1.","." ";  
+    }  
     $sql = "INSERT INTO tbl_forms (	lastname, firstname, middlename, student_no, address, email, batch, gender, career, field, resume)
-     VALUES ('$firstname', '$middlename', '$lastname', '$student_no', '$address', '$email', '$batch', '$gender', '$career', 'none', '$file')";
+     VALUES ('$lastname', '$firstname', '$middlename', '$student_no', '$address', '$email', '$batch', '$gender', '$career', '$chk', '$file')";
 
     $query=mysqli_query($conn,$sql);
     echo "<script type=\"text/javascript\">
