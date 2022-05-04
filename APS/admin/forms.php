@@ -137,11 +137,11 @@
                                             <th scope="col">Address</th>
                                             <th scope="col">Email</th>
                                             <th scope="col">Batch</th>
-                                            <th scope="col">Gender</th>
                                             <th scope="col">Career</th>
                                             <th scope="col">Field</th>
                                             <th scope="col">File</th>
                                             <th scope="col">Action</th>
+                                            <th scope="col">Send Verification</th>
                                           </tr>
                                         </thead>
                                         <tbody>
@@ -155,20 +155,54 @@
                                             <th><?php echo $row['id']; ?></th>
                                             <td><?php echo $row['lastname'].' '. $row['firstname'].' '. $row['middlename']; ?></td>
                                             <td><?php echo $row['student_no']; ?></td>
-                                            <th><?php echo $row['address']; ?></th>
-                                            <th><?php echo $row['email']; ?></th>
-                                            <th><?php echo $row['batch']; ?></th>
-                                            <th><?php echo $row['gender']; ?></th>
-                                            <th><?php echo $row['career']; ?></th>
-                                            <th><?php echo $row['field']; ?></th>
-                                            <th><?php echo $row['resume']; ?></th>
+                                            <td><?php echo $row['address']; ?></td>
+                                            <td><?php echo $row['email']; ?></td>
+                                            <td><?php echo $row['batch']; ?></td>
+                                            <td><?php echo $row['career']; ?></td>
+                                            <td><?php echo $row['field']; ?></td>
+                                            <td><?php echo $row['resume']; ?></td>
                                             <td>
                                                 <button class="btn btn-primary" data-bs-toggle="modal"  data-bs-target="#editModal<?php echo $row['id']?>"> <i class="mdi mdi-pencil"></i></button>
                                                 <a href="functions.php?file=<?php echo $row['resume']; ?>" class="btn btn-warning"><i class="mdi mdi-arrow-down"></i></a>
                                                 <button class="btn btn-danger" style="color:white" data-bs-toggle="modal"  data-bs-target="#deleteModal<?php echo $row['id'] ?>"> <i class="mdi mdi-delete"></i></button>
                                             </td>
+                                            <td><button class="btn btn-success" style="color:white" data-bs-toggle="modal"  data-bs-target="#composeModal<?php echo $row['id']?>">Compose</button></td>
                                           </tr>
                                         
+                                        <!-- Compose Message and Send Verification Status -->
+                                         <div class="modal fade" id="composeModal<?php echo $row['id']?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel">Compose Message and Send Verification <br> Status for User: <?php echo $row['firstname'] ?></h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <form action="functions.php" method="POST">
+                                                <div class="modal-body">
+                                                <h5>Verify this user?</h5>
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                                                        <label class="form-check-label" for="flexRadioDefault1">
+                                                            Yes
+                                                        </label>
+                                                    </div>
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                                                        <label class="form-check-label" for="flexRadioDefault1">
+                                                            No
+                                                        </label>
+                                                    </div>
+                                                <h5>Compose Message:</h5>
+                                                <textarea name="" class="form-control" id="" cols="30" rows="5" required></textarea>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                    <button type="submit" class="btn btn-success" style="color:white" name="">Send</button>
+                                                </div>
+                                            </form>
+                                            </div>
+                                        </div>
+                                        </div>
 
                                            <!-- Modal Edit -->
                                          <div class="modal fade" id="editModal<?php echo $row['id']?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

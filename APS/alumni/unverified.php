@@ -51,7 +51,7 @@ button {
 <br>
 
 
-    <a href="register.php"><button type="button" class="btn" >Back</button></a>
+    <a href="../index.php"><button type="button" class="btn" >Back</button></a>
 	</div>
 </center>
 </body>

@@ -9,12 +9,13 @@ if (isset($_POST['form_submit'])) {
     $lastname = $_POST['lname'];
     $student_no = $_POST['s_no'];
     $address = $_POST['address'];
-    $email = $_POST['email'];
+    $emails = $_POST['email'];
     $batch = $_POST['batch'];
     $gender = $_POST['gender'];
     $career = $_POST['career'];
     $field = $_POST['f1'];
-    
+
+
     $file=$_FILES['file']['name'];
     $file_type=$_FILES['file']['type'];
     $file_size=$_FILES['file']['size'];
@@ -26,12 +27,14 @@ if (isset($_POST['form_submit'])) {
     foreach($field as $chk1)  {  
           $chk .= $chk1.","." ";  
     }  
+    include 'send_email_forms.php';
+    
     $sql = "INSERT INTO tbl_forms (	lastname, firstname, middlename, student_no, address, email, batch, gender, career, field, resume)
-     VALUES ('$lastname', '$firstname', '$middlename', '$student_no', '$address', '$email', '$batch', '$gender', '$career', '$chk', '$file')";
+     VALUES ('$lastname', '$firstname', '$middlename', '$student_no', '$address', '$emails', '$batch', '$gender', '$career', '$chk', '$file')";
 
     $query=mysqli_query($conn,$sql);
     echo "<script type=\"text/javascript\">
-    alert(\"Successfully Submitted\");
+    alert(\"Successfully Submitted. Check your email now.\");
     window.location = \"apply.php\"
     </script>";
 

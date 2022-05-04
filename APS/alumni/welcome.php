@@ -31,13 +31,18 @@ include_once 'get_user.php';
 				<h2> ALUMNI PLACEMENT SYSTEM</h2>
 			</div>
 
-        <ul>
+		<ul class="uls">
             <li><a href="home.php">Home</a></li>
-			<li><a href="about.php">About</a></li>
+            <li><a href="about.php">About</a></li>
             <li><a href="apply.php">Apply for a job</a>
-			<li><a href="contact.php">Contact</a>
-            <li><a href="profile.php"><?php echo $_SESSION['user']['username'];?></a></li>
-		</ul>
+            <li><a href="contact.php">Contact</a>
+            <li><a href="profile.php"><?php echo $_SESSION['user']['username'];?></a>
+            <div class="sub-menu">
+              <ul>
+                <li><a href="profile.php">My Profile</a></li>
+                <li><a href="logout.php">Logout</a></li>
+          </ul>
+        </ul>
 	</div>
 	<div class="content">
     	<?php echo "<h1>Welcome, " . $_SESSION['user']['username'] . "!</h1>"; ?>
