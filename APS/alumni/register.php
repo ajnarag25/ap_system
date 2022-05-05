@@ -7,7 +7,7 @@ error_reporting(0);
 session_start();
 
 if (isset($_SESSION['username'])) {
-    header("Location: index.php");
+    header("Location: ../index.php");
 }
 
 if (isset($_POST['submit'])) {
@@ -180,7 +180,7 @@ if (isset($_POST['submit'])) {
       </form>
     </div>
   </div>
-    <p class="register-text">Already have an account? <a href="index.php">Login Here</a>.</p>
+    <p class="register-text">Already have an account? <a href="../index.php">Login Here</a>.</p>
     </form>
   </div>
 <script src="yearpicker.js"></script>

@@ -127,8 +127,8 @@
                     <div class="col-12">
                         <div class="card card-body">
                             <div class="container-fluid">
-                                <div class="card-body">
-                                    <table class="table table-hover">
+                                <div class="card-body overflow-auto" >
+                                    <table class="table table-hover ">
                                         <thead class="thead-dark">
                                           <tr>
                                             <th scope="col">#</th>
