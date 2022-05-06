@@ -49,7 +49,7 @@ if (!isset($_SESSION['user'])) {
             <li><a href="profile.php"><?php echo $_SESSION['user']['username'];?></a>
             <div class="sub-menu">
               <ul>
-                <li><a href="profile.php">My Profile</a></li>
+                <li><a href="profile.php">My Account</a></li>
                 <li><a href="logout.php">Logout</a></li>
           </ul>
         </ul>

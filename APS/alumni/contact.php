@@ -72,7 +72,7 @@ if (!isset($_SESSION['user'])) {
             <li><a href="profile.php"><?php echo $_SESSION['user']['username'];?></a>
             <div class="sub-menu">
               <ul>
-                <li><a href="profile.php">My Profile</a></li>
+                <li><a href="profile.php">My Account</a></li>
                 <li><a href="logout.php">Logout</a></li>
           </ul>
         </ul>
@@ -114,15 +114,22 @@ if (!isset($_SESSION['user'])) {
     <br><br>
     <div class="text-center" data-aos="zoom-out" data-aos-duration="1000" data-aos-once="true">
     <h4 class="text-center">Send Message:</h4>
-            <form method="#">
+        <?php 
+              $user = $_SESSION['user']['username'];
+              $s_id = $_SESSION['user']['student_id'];
+              $query = "SELECT * FROM tbl_users WHERE username='$user' AND student_id='$s_id'";
+              $result = mysqli_query($conn, $query);
+              while ($row = mysqli_fetch_array($result)) {
+          ?>
+            <form action="contact_submit.php" method="POST">
                 <br><br>
               <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
-                          <input type="text" name="txtName" class="form-control" placeholder="Name" value="" required />
+                          <input type="text" name="txtName" class="form-control" placeholder="Name" value="<?php echo $row['firstname'] ?>" required />
                         </div>
                         <div class="form-group">
-                            <input type="email" name="txtEmail" class="form-control" placeholder="Email" value="" required/>
+                            <input type="email" name="txtEmail" class="form-control" placeholder="Email" value="<?php echo $row['email'] ?>" required/>
                         </div>
                         <div class="form-group">
                             <input type="text" name="txtPhone" class="form-control" placeholder="Phone Number" value="" required/>
@@ -136,12 +143,13 @@ if (!isset($_SESSION['user'])) {
                     </div>
                     <div class="text-center">
                         <div class="form-group mx-auto ">
-                            <button class="custom-button-contact">SEND MESSAGE</button>
+                            <button class="custom-button-contact" name="send_msg">SEND MESSAGE</button>
                         </div>
                     </div>
                 
                 </div>
           </form>
+          <?php };?>
     </div>
   </div>
 

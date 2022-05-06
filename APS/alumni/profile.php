@@ -14,8 +14,14 @@ $user = mysqli_fetch_assoc($result);
 <!DOCTYPE html>
 <html lang="en">
 <link rel="stylesheet" href="webdesign.css">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@mdi/font@6.5.95/css/materialdesignicons.min.css">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 <style>
+      .custom-container{
+        width: 80%;
+        margin: auto;
+   
+    }
     .logo-text{
 		display: flex;
 		align-items: center;
@@ -28,114 +34,7 @@ $user = mysqli_fetch_assoc($result);
     .logo-text h2{
       margin-left: 20px;
     }
-    .main-block {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;  
-      align-items: center;
-      height: 20%;
-      padding: -5px;
-      background: rgba(0, 0, 0, 0.5); 
-      }
-      .left-part, form {
-      padding: 25px;
-      }
-      .left-part {
-      text-align: center;
-      }
-      .fa-graduation-cap {
-      font-size: 72px;
-      }
-      form {
-      background: rgba(0, 0, 0, 0.7);
-      }
-      .right, form{
-        margin-bottom: 97px;
-      }
-      .title {
-      display: block;
-      align-items: center;
-      margin-bottom: 5px;
-      text-align: center;
-      }
-      .info {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      }
-      .white{
-        color: #fff;
-      }
-      .inputprofile, .selectprofile {
-      padding: 5px;
-      margin-bottom: 0px;
-      background: transparent;
-      border: none;
-      border-bottom: 1px solid #eee;
-      }
-      .inputprofile::placeholder {
-      color: #eee;
-      }
-      option:focus {
-      border: none;
-      }
-      option {
-      background: dimgray; 
-      border: none;
-      }
-      .checkbox input {
-      margin: 0 10px 0 0;
-      vertical-align: middle;
-      }
-      .checkbox a {
-      color: #26a9e0;
-      }
-      .checkbox a:hover {
-      color: #85d6de;
-      }
-      .btn-item, button {
-      padding: 20px 20px;
-      margin-top: 20px;
-      border-radius: 20px; 
-      border: none;
-      background: #26a9e0; 
-      text-decoration: none;
-      font-size: 15px;
-      font-weight: 400;
-      color: #fff;
-      }
-      .btn-item {
-      display: inline-block;
-      margin: 20px 5px 0;
-      }
-      button {
-      width: 100%;
-      }
-      .buttoncen{
-        align-items: center;
-        margin-left: 235px;
-      }
-      button:hover, .btn-item:hover {
-      background: #85d6de;
-      }
-      @media (min-width: 568px) {
-      html, body {
-      height: 85%;
-      }
-      .main-block {
-      flex-direction: row;
-      height: calc(100% - 50px);
-      }
-      .left-part, form {
-      flex: 1;
-      height: auto;
-      }
-      .user-img {
-      border-radius: 5%;
-      width: 12.5rem;
-      height: auto;
-    }
-      }
+
     </style>
 <head>
     <meta charset="UTF-8">
@@ -147,65 +46,166 @@ $user = mysqli_fetch_assoc($result);
     <title>My Profile</title>
 <body>
 	<div class="banner">
-  <div class="navbar">
-      <div class="logo-text">
-        <img src="QCU_Logo_2019.png" width="70" height="70" alt="">
-        <h2> ALUMNI PLACEMENT SYSTEM</h2>
-      </div>
-        <ul class="uls">
-            <li><a href="home.php">Home</a></li>
-            <li><a href="about.php">About</a></li>
-            <li><a href="apply.php">Apply for a job</a>
-            <li><a href="contact.php">Contact</a>
-            <li><a href="profile.php"><?php echo $_SESSION['user']['username'];?></a>
-            <div class="sub-menu">
-              <ul>
-                <li><a href="profile.php">My Profile</a></li>
-                <li><a href="logout.php">Logout</a></li>
+    <div class="navbar">
+        <div class="logo-text">
+          <img src="QCU_Logo_2019.png" width="70" height="70" alt="">
+          <h2> ALUMNI PLACEMENT SYSTEM</h2>
+        </div>
+          <ul class="uls">
+              <li><a href="home.php">Home</a></li>
+              <li><a href="about.php">About</a></li>
+              <li><a href="apply.php">Apply for a job</a>
+              <li><a href="contact.php">Contact</a>
+              <li><a href="profile.php"><?php echo $_SESSION['user']['username'];?></a>
+              <div class="sub-menu">
+                <ul>
+                  <li><a href="profile.php">My Account</a></li>
+                  <li><a href="logout.php">Logout</a></li>
+            </ul>
           </ul>
-        </ul>
-  </div>
-<div class="main-block">
-      <div class="left-part">
-        <p><i class="fas fa-graduation-cap" style="color:white;"></i></p>
-        <?php if(isset($_SESSION['user']['avatar_path'])): ?>
-            <img class="user-img" src="<?php echo $_SESSION['user']['avatar_path'] ?>" class="test">
-
-        <?php endif?>
-        <form action="upload.php" method="post" enctype="multipart/form-data" style="color: white;">
-            <p>Select image to upload:</p>
-    <input type="file" name="fileToUpload" id="fileToUpload" accept="image/png, image/jpeg">
-    <div><input type="submit" value="Upload Image" name="submit"></div>
-    </form>
-      </div>
-      <form action="update_profile.php" class=right method="POST">
-        <?php 
-        $currentUser = $_SESSION['user']['username'];
-        $updatesql = "SELECT * FROM users WHERE username = '$currentUser'";
-        $gotResults = mysqli_query($conn, $sql);
-
-        if($gotResults){
-          if(mysqli_num_rows($gotResults)>0){
-            while($row = mysqli_fetch_array($gotResults)){
-            }
-          }
-        }
-        ?>
-        <div class="title">
-          <i class="fas fa-pencil-alt"></i> 
-          <h2 class="white">Alumni Profile</h2>
-        </div>
-        <div class="info">
-          <input type="hidden" name="user_id" value="<?php echo $user['user_id']?>">
-          <input class="fname" type="text" name="firstname" placeholder="<?php echo $user['firstname']?>" style="width: 400px" required>
-          <input type="text" name="email" placeholder="<?php echo $user['email']?>" style="width: 400px" required>
-          <input type="text" name="gender" placeholder="<?php echo $user['gender']?>" style="width: 400px" required>
-          <input type="text" name="course" placeholder="<?php echo $user['course_name']?>" style="width: 400px" disabled>
-          <input type="text" name="branch" placeholder="<?php echo $user['branch_name']?>" style="width: 400px" disabled>
-          <input type="datetime" name="batch" placeholder="<?php echo $user['batch']?>" style="width: 400px" disabled>
-        </div>
-        <button type="submit" name="update" class="buttoncen">Update</button>
-      </form>
     </div>
+    <div class="custom-container">
+      <div class="row">
+        <div class="col-md-4">
+          <div class="card-body text-center" style="background-color: rgb(216,216,216);" >
+          <i class="mdi mdi-archive-edit me-1" style="font-size: 100px"></i>
+            <h3>Check Status</h3>
+            <p>Submitted form</p>
+            <button data-bs-toggle="modal" data-bs-target="#formModal<?php echo $_SESSION['user']['username'];?>">View</button>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card-body text-center" style="background-color: rgb(216,216,216);" >
+          <i class="mdi mdi-forum me-1" style="font-size: 100px"></i>
+            <h3>Check Status</h3>
+            <p>Submitted concern</p>
+            <button data-bs-toggle="modal" data-bs-target="#concernModal<?php echo $_SESSION['user']['username'];?>">View</button>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card-body text-center" style="background-color: rgb(216,216,216);" >
+          <i class="mdi mdi-cogs me-1" style="font-size: 100px"></i>
+            <h3>Manage Account</h3>
+            <p>Update your credentials</p>
+            <button data-bs-toggle="modal" data-bs-target="#accountModal<?php echo $_SESSION['user']['username'];?>">Manage</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+    <!-- Modal Account-->
+    <div class="modal fade" id="accountModal<?php echo  $_SESSION['user']['username'];?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+              <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Account Settings</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <div class="text-center">
+                <h2 class="white">Alumni Profile</h2>
+                <br>
+                <?php if(isset($_SESSION['user']['avatar_path'])): ?>
+                  <img class="user-img" src="<?php echo $_SESSION['user']['avatar_path'] ?>" width="100" class="test">
+                <?php endif?>
+                <form action="upload.php" method="post" enctype="multipart/form-data" style="color: white;">
+                  <p>Select image to upload:</p>
+                  <input type="file" name="fileToUpload" id="fileToUpload" accept="image/png, image/jpeg" style="color: black">
+                <div>
+                  <input type="submit" value="Upload Image" name="submit">
+                </div>
+                </form>
+                <hr class="my-3">
+              <div class="text-center">
+                <div class="form-group">
+                <form action="update_profile.php" class=right method="POST">
+                    <?php 
+                    $currentUser = $_SESSION['user']['username'];
+                    $updatesql = "SELECT * FROM users WHERE username = '$currentUser'";
+                    $gotResults = mysqli_query($conn, $sql);
+
+                    if($gotResults){
+                      if(mysqli_num_rows($gotResults)>0){
+                        while($row = mysqli_fetch_array($gotResults)){
+                        }
+                      }
+                    }
+                    ?>
+                      <input type="hidden" name="user_id" value="<?php echo $user['user_id']?>">
+                        <input class="form-control" type="text" name="firstname" placeholder="<?php echo $user['firstname']?>" required>
+                        <input type="text" class="form-control" name="email" placeholder="<?php echo $user['email']?>" required>
+                        <input type="text" class="form-control" name="gender" placeholder="<?php echo $user['gender']?>" required>
+                        <input type="text" class="form-control" name="course" placeholder="<?php echo $user['course_name']?>" disabled>
+                        <input type="text" class="form-control" name="branch" placeholder="<?php echo $user['branch_name']?>" disabled>
+                        <input type="datetime" class="form-control" name="batch" placeholder="<?php echo $user['batch']?>" disabled>
+                    </div>
+                    <button type="submit" name="update" class="buttoncen">Update</button>
+                  </form>
+                </div>
+              </div>
+              </div>
+            </div>
+        </div>
+        </div>
+    </div>
+    
+
+
+     <!-- Modal Check Status Concern-->
+     <div class="modal fade" id="concernModal<?php echo $_SESSION['user']['username'];?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Check Status - Concern</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+            <?php 
+                $name = $_SESSION['user']['firstname'];
+                $query = "SELECT * FROM tbl_concerns WHERE name='$name'";
+                $result = mysqli_query($conn, $query);
+                while ($row = mysqli_fetch_array($result)) {
+              ?>
+              <h5>Submitted concern:</h5>
+              <textarea name="" class="form-control" id="" cols="30" rows="5" placeholder="<?php echo $row['message'] ?>" readonly></textarea>
+              <br>
+              <?php }; ?>
+              <h5>Message from the admin:</h5>
+              <textarea name="" class="form-control" id="" cols="30" rows="5" disabled></textarea>
+            </div>
+        </div>
+        </div>
+    </div>
+
+
+      <!-- Modal Check Status Form-->
+      <div class="modal fade" id="formModal<?php echo $_SESSION['user']['username'];?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Check Status - Form</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <?php 
+                $s_id = $_SESSION['user']['student_id'];
+                $query = "SELECT * FROM tbl_forms WHERE student_no='$s_id'";
+                $result = mysqli_query($conn, $query);
+                while ($row = mysqli_fetch_array($result)) {
+              ?>
+              <h5>Status: <span style="color:yellow;">PENDING</span></h5>
+              <h5>Submitted file: <span style="color: blue"><?php echo $row['resume'] ?></span></h5>
+              <br>
+              <h5>Message from the admin:</h5>
+              <textarea name="" class="form-control" id="" cols="30" rows="5" disabled></textarea>
+            </div>
+            <?php }; ?>
+        </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
   </body>
 </html>
