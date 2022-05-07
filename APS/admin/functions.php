@@ -45,9 +45,11 @@ if (isset($_POST['updateForm'])) {
     header("Location: forms.php");
 }
 
-// Delete User
-if (isset($_GET['deleteForm'])) {
-    $id = $_GET['deleteForm'];
+// Delete User Form
+if (isset($_POST['del'])) {
+    $id = $_POST['id'];
+    $student_no = $_POST['student'];
+    $conn->query("UPDATE tbl_users SET stat='NO FORM SUBMITTED', feedback='N/A' WHERE student_id='$student_no'") or die($db_link->error);
     $conn->query("DELETE FROM tbl_forms WHERE id=$id") or die($db_link->error);
     header("Location: forms.php");
 }
@@ -75,5 +77,53 @@ if (isset($_GET['file'])) {
     }
 
 }
+
+// Send Verification to alumni and message
+if (isset($_POST['sendVerify'])) {
+    $id = $_POST['student_no'];
+    $verification = $_POST['radios'];
+    $message = $_POST['msgs'];
+
+    if ($verification == 'YES'){
+        $conn->query("UPDATE tbl_users SET stat='VERIFIED', feedback='$message' WHERE student_id='$id'") or die($db_link->error);
+        $conn->query("UPDATE tbl_forms SET status='VERIFIED' WHERE student_no='$id'") or die($db_link->error);
+
+        echo "<script type=\"text/javascript\">
+        alert(\"Successfully submitted\");
+        window.location = \"forms.php\"
+        </script>";
+
+    }elseif ($verification == 'NO'){
+        $conn->query("UPDATE tbl_users SET stat='NOT VERIFIED', feedback='$message' WHERE student_id='$id'") or die($db_link->error);
+        $conn->query("UPDATE tbl_forms SET status='NOT VERIFIED' WHERE student_no='$id'") or die($db_link->error);
+
+        echo "<script type=\"text/javascript\">
+        alert(\"Successfully submitted\");
+        window.location = \"forms.php\"
+        </script>";
+    }
+    
+}
+
+
+// Update Form
+if (isset($_POST['composeConcern'])) {
+    $id = $_POST['id'];
+    $msgs = $_POST['msg'];
+    $conn->query("UPDATE tbl_concerns SET feedback='$msgs'  WHERE id=$id") or die($db_link->error);
+
+    echo "<script type=\"text/javascript\">
+    alert(\"Successfully submitted\");
+    window.location = \"concerns.php\"
+    </script>";
+}
+
+
+// Delete Concern
+if (isset($_GET['concernDel'])) {
+    $id = $_GET['concernDel'];
+    $conn->query("DELETE FROM tbl_concerns WHERE id=$id") or die($db_link->error);
+    header("Location: concerns.php");
+   }
 
 ?>

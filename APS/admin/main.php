@@ -91,6 +91,13 @@
                             </a>
                         </li>
                         <li class="sidebar-item">
+                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="concerns.php"
+                                aria-expanded="false">
+                                <i class="mdi mdi-message"></i>
+                                <span class="hide-menu">Concerns</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item">
                             <a class="sidebar-link waves-effect waves-dark sidebar-link" href="users.php"
                                 aria-expanded="false">
                                 <i class="mdi mdi-account"></i>
@@ -126,7 +133,7 @@
             <br><br>
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-lg-6">
+                    <div class="col-lg-4">
                         <div class="card">
                             <div class="card-body" style="background-color: rgba(255, 255, 0, 0.534);">
                                 <div class="text-center">
@@ -144,7 +151,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-6">
+                    <div class="col-lg-4">
                         <div class="card">
                             <div class="card-body" style="background-color: rgba(0, 255, 115, 0.575);">
                                 <div class="text-center">
@@ -154,6 +161,24 @@
                                     <h2 class="card-title">Submitted Forms</h2>
                                     <?php 
                                        $sql = "SELECT * FROM tbl_forms";
+                                       $result=mysqli_query($conn, $sql);
+                                       $row = mysqli_num_rows($result);
+                                    ?>
+                                    <h2><?php echo $row; ?></h2>     
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="card">
+                            <div class="card-body" style="background-color: #72FFDE;">
+                                <div class="text-center">
+                                    <br>
+                                    <img src="assets/images/message.png" width="103" alt="">
+                                    <br><br>
+                                    <h2 class="card-title">Submitted Concerns</h2>
+                                    <?php 
+                                       $sql = "SELECT * FROM tbl_concerns";
                                        $result=mysqli_query($conn, $sql);
                                        $row = mysqli_num_rows($result);
                                     ?>

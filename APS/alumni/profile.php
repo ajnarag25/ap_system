@@ -171,9 +171,9 @@ $user = mysqli_fetch_assoc($result);
               <h5>Submitted concern:</h5>
               <textarea name="" class="form-control" id="" cols="30" rows="5" placeholder="<?php echo $row['message'] ?>" readonly></textarea>
               <br>
-              <?php }; ?>
               <h5>Message from the admin:</h5>
-              <textarea name="" class="form-control" id="" cols="30" rows="5" disabled></textarea>
+              <textarea name="" class="form-control" id="" cols="30" rows="5" disabled><?php echo $row['feedback'] ?></textarea>
+              <?php }; ?>
             </div>
         </div>
         </div>
@@ -189,19 +189,44 @@ $user = mysqli_fetch_assoc($result);
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
+            <?php 
+                $s_id = $_SESSION['user']['student_id'];
+                $query = "SELECT * FROM tbl_users WHERE student_id='$s_id'";
+                $result = mysqli_query($conn, $query);
+                while ($row = mysqli_fetch_array($result)) {
+                $status = $row['stat'];
+              ?>
+              <?php
+              if ($status == 'NO FORM SUBMITTED'){
+                echo " <h5>Status: <span style='color:orange;'> $status </span></h5>";
+              }elseif ($status == 'PENDING'){
+                echo " <h5>Status: <span style='color:yellow;'> $status </span></h5>";
+              }elseif ($status == 'VERIFIED'){
+                echo " <h5>Status: <span style='color:green;'> $status </span></h5>";
+              }elseif ($status == 'NOT VERIFIED'){
+                echo " <h5>Status: <span style='color:red;'> $status </span></h5>";
+              }
+             
+               }; ?>
               <?php 
                 $s_id = $_SESSION['user']['student_id'];
                 $query = "SELECT * FROM tbl_forms WHERE student_no='$s_id'";
                 $result = mysqli_query($conn, $query);
                 while ($row = mysqli_fetch_array($result)) {
               ?>
-              <h5>Status: <span style="color:yellow;">PENDING</span></h5>
               <h5>Submitted file: <span style="color: blue"><?php echo $row['resume'] ?></span></h5>
+              <?php }; ?>
               <br>
               <h5>Message from the admin:</h5>
-              <textarea name="" class="form-control" id="" cols="30" rows="5" disabled></textarea>
+              <?php 
+                $s_id = $_SESSION['user']['student_id'];
+                $query = "SELECT * FROM tbl_users WHERE student_id='$s_id'";
+                $result = mysqli_query($conn, $query);
+                while ($row = mysqli_fetch_array($result)) {
+              ?>
+              <textarea name="" class="form-control" id="" cols="30" rows="5" readonly><?php echo $row['feedback'] ?></textarea>
+              <?php }; ?>
             </div>
-            <?php }; ?>
         </div>
         </div>
     </div>

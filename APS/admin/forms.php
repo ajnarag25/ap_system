@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="noindex,nofollow">
-    <title>ALUMNI PLACEMENT SYSTEM - Profile</title>
+    <title>ALUMNI PLACEMENT SYSTEM - Forms</title>
     <link rel="canonical" href="https://www.wrappixel.com/templates/niceadmin-lite/" />
     <link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicon.png">
     <link href="dist/css/style.min.css" rel="stylesheet">
@@ -90,6 +90,13 @@
                             </a>
                         </li>
                         <li class="sidebar-item">
+                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="concerns.php"
+                                aria-expanded="false">
+                                <i class="mdi mdi-message"></i>
+                                <span class="hide-menu">Concerns</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item">
                             <a class="sidebar-link waves-effect waves-dark sidebar-link" href="users.php"
                                 aria-expanded="false">
                                 <i class="mdi mdi-account"></i>
@@ -142,6 +149,7 @@
                                             <th scope="col">File</th>
                                             <th scope="col">Action</th>
                                             <th scope="col">Send Verification</th>
+                                            <th scope="col">Status</th>
                                           </tr>
                                         </thead>
                                         <tbody>
@@ -160,13 +168,13 @@
                                             <td><?php echo $row['batch']; ?></td>
                                             <td><?php echo $row['career']; ?></td>
                                             <td><?php echo $row['field']; ?></td>
-                                            <td><?php echo $row['resume']; ?></td>
+                                            <td><a  target="_blank" href="functions.php?file=<?php echo $row['resume']; ?>" ><?php echo $row['resume'] ?></a></td>
                                             <td>
                                                 <button class="btn btn-primary" data-bs-toggle="modal"  data-bs-target="#editModal<?php echo $row['id']?>"> <i class="mdi mdi-pencil"></i></button>
-                                                <a href="functions.php?file=<?php echo $row['resume']; ?>" class="btn btn-warning"><i class="mdi mdi-arrow-down"></i></a>
                                                 <button class="btn btn-danger" style="color:white" data-bs-toggle="modal"  data-bs-target="#deleteModal<?php echo $row['id'] ?>"> <i class="mdi mdi-delete"></i></button>
                                             </td>
                                             <td><button class="btn btn-success" style="color:white" data-bs-toggle="modal"  data-bs-target="#composeModal<?php echo $row['id']?>">Compose</button></td>
+                                            <td><?php echo $row['status']; ?></td>
                                           </tr>
                                         
                                         <!-- Compose Message and Send Verification Status -->
@@ -180,24 +188,25 @@
                                             <form action="functions.php" method="POST">
                                                 <div class="modal-body">
                                                 <h5>Verify this user?</h5>
+                                                    <input class="form-check-input" type="hidden" name="student_no" value="<?php echo $row['student_no']?>">
                                                     <div class="form-check">
-                                                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                                                        <input class="form-check-input" type="radio" name="radios" value="YES" id="flexRadioDefault1">
                                                         <label class="form-check-label" for="flexRadioDefault1">
                                                             Yes
                                                         </label>
                                                     </div>
                                                     <div class="form-check">
-                                                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                                                        <input class="form-check-input" type="radio" name="radios" value="NO" id="flexRadioDefault1">
                                                         <label class="form-check-label" for="flexRadioDefault1">
                                                             No
                                                         </label>
                                                     </div>
-                                                <h5>Compose Message:</h5>
-                                                <textarea name="" class="form-control" id="" cols="30" rows="5" required></textarea>
+                                                    <h5>Compose Message:</h5>
+                                                    <textarea class="form-control" name="msgs" cols="30" rows="5" required></textarea>
                                                 </div>
                                                 <div class="modal-footer">
                                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                                    <button type="submit" class="btn btn-success" style="color:white" name="">Send</button>
+                                                    <button type="submit" class="btn btn-success" name="sendVerify" style="color:white" name="">Send</button>
                                                 </div>
                                             </form>
                                             </div>
@@ -242,15 +251,19 @@
                                             <div class="modal-dialog">
                                             <div class="modal-content">
                                                 <div class="modal-header">
-                                                <h5 class="modal-title" id="exampleModalLabel">Delete User <?php echo $row['firstname'] ?></h5>
-                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                </div>
-                                                <div class="modal-body">
-                                                <h4>Are you sure you want to delete this user?</h4>
-                                                </div>
-                                                <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                                                <a class="btn btn-danger" style="color:white" href="functions.php?deleteForm=<?php echo $row["id"] ?>">Delete</a>
+                                                    <form action="functions.php" method="POST">
+                                                        <h5 class="modal-title" id="exampleModalLabel">Delete User <?php echo $row['firstname'] ?></h5>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                        <h4>Are you sure you want to delete this user?</h4>
+                                                        <input type="hidden" class="form-control" name="id" value="<?php echo $row['id'] ?>">
+                                                        <input type="hidden" class="form-control" name="student" value="<?php echo $row['student_no'] ?>">
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                                        <button type="submit" class="btn btn-danger" name="del" style="color:white" href="">Delete</button>
+                                                    </form>
                                                 </div>
                                             </div>
                                             </div>

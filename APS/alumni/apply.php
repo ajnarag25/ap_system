@@ -107,7 +107,7 @@ if (!isset($_SESSION['user'])) {
                 </div>
                 <div class="form-group col-md-6">
                 <label for="">Student Number <span style="color: red;">*</span></label>
-                  <input type="text" class="form-control" name="s_no" value="<?php echo $row['student_id'] ?>" required>
+                  <input type="text" class="form-control" name="s_no" value="<?php echo $row['student_id'] ?>" readonly>
                 </div>
                 <div class="form-group col-md-6">
                 <label for="">Address <span style="color: red;">*</span></label>

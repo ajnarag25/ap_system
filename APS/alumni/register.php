@@ -24,31 +24,44 @@ if (isset($_POST['submit'])) {
   $course_id = $_POST['course_id'];
   $branch_id = $_POST['branch_id'];
 
+  $target_dir = "uploads/";
+  $target_file = $target_dir . time(). basename($_FILES["fileToUpload"]["name"]);
+  $uploadOk = 1;
+  $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
+  $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
+
   if ($password == $cpassword) {
-    $sql = "SELECT * FROM tbl_users WHERE email='$email'";
+    $sql = "SELECT * FROM tbl_users WHERE email='$email' OR student_id='$student_no'";
     $result = mysqli_query($conn, $sql);
     if (!$result->num_rows > 0) {
-      $sql = "INSERT INTO tbl_users (student_id,username, password, email, firstname, middlename, lastname, gender, batch, course_id, branch_id)
-          VALUES ('$student_no', '$username', '".password_hash($_POST['password'], PASSWORD_DEFAULT)."', '$email', '$firstname', '$middlename', '$lastname', '$gender','$batch', '$course_id', '$branch_id')";
-      $result = mysqli_query($conn, $sql);
-      if ($result) {
-        echo "<script>alert('User Registration Completed.')</script>";
-        $username = "";
-        $email = "";
-        $_POST['password'] = "";
-        $_POST['cpassword'] = "";
-        $firstname ="";
-        $middlename ="";
-        $lastname ="";
-        $gender = "";
-        $batch = "";
-        $course_id = "";
-        $branch_id = "";
-      } else {
-        echo "<script>alert('Something went wrong.')</script>";
+      move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file);
+      if($check == false) {
+        echo "<script>alert('File is not an image.')</script>";
+      }else{
+        $sql = "INSERT INTO tbl_users (student_id,username, password, email, firstname, middlename, lastname, gender, batch, course_id, branch_id, avatar_path, stat, feedback)
+        VALUES ('$student_no', '$username', '".password_hash($_POST['password'], PASSWORD_DEFAULT)."', '$email', '$firstname', '$middlename', '$lastname', '$gender','$batch', '$course_id', '$branch_id', '$target_file', 'NO FORM SUBMITTED', 'N/A')";
+        $result = mysqli_query($conn, $sql);
+
+        if ($result) {
+          echo "<script>alert('User Registration Completed.')</script>";
+          $username = "";
+          $email = "";
+          $_POST['password'] = "";
+          $_POST['cpassword'] = "";
+          $firstname ="";
+          $middlename ="";
+          $lastname ="";
+          $gender = "";
+          $batch = "";
+          $course_id = "";
+          $branch_id = "";
+        } else {
+          echo "<script>alert('Something went wrong.')</script>";
+        }
       }
+     
     } else {
-      echo "<script>alert('Email already exists.')</script>";
+      echo "<script>alert('Email already exists / Student I.D already exists.')</script>";
     }
     
   } else {
@@ -75,7 +88,7 @@ if (isset($_POST['submit'])) {
   <div class="container">
     <p class="login-text" style="font-size: 2rem; font-weight: 800;">Registration</p>
     <div class="content">
-      <form action="#" method="POST">
+      <form action="#" method="POST" enctype="multipart/form-data">
         <div class="user-details">
           <div class="input-box">
             <span class="details">First Name</span>
@@ -135,9 +148,9 @@ if (isset($_POST['submit'])) {
             </select>
       </div>
       <div class="input-box">
-            <span class="details">Branch</span>
+            <span class="details">Campus</span>
             <select name="branch_id" class="select" value="<?php echo $branch_id; ?>" required>
-              <option disabled selected>Select Your Alma Mater Branch</option>
+              <option disabled selected>Select Your Alma Mater Campus</option>
               <?php 
                 $branch_query = "SELECT * FROM tbl_branch";
                 $branch_result = mysqli_query($conn, $branch_query);
@@ -153,6 +166,10 @@ if (isset($_POST['submit'])) {
                 }
               ?>
             </select>
+          </div>
+          <div class="input-box">
+            <span class="details">Select image to upload:</span>
+            <input type="file" name="fileToUpload" id="fileToUpload" accept="image/png, image/jpeg" required>
           </div>
     </div>
         <div class="gender-details">

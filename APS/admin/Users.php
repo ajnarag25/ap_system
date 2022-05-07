@@ -91,6 +91,13 @@
                             </a>
                         </li>
                         <li class="sidebar-item">
+                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="concerns.php"
+                                aria-expanded="false">
+                                <i class="mdi mdi-message"></i>
+                                <span class="hide-menu">Concerns</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item">
                             <a class="sidebar-link waves-effect waves-dark sidebar-link" href="users.php"
                                 aria-expanded="false">
                                 <i class="mdi mdi-account"></i>
@@ -145,7 +152,7 @@
                                         <tbody>
 
                                         <?php 
-                                            $query = "SELECT * FROM tbl_users ";
+                                            $query = "SELECT * FROM tbl_users where type='alumni'";
                                             $result = mysqli_query($conn, $query);
                                             while ($row = mysqli_fetch_array($result)) {
 
@@ -237,7 +244,7 @@
                                                     if ($row['is_verified'] == 1){
                                                         echo "<h4>This User is already verified!</h4>";
                                                     }else{
-                                                        echo "<h4>Verify now this user?".' '.$row['firstname']."</h4>";
+                                                        echo "<h4>Verify now this user".' '.$row['firstname'].' '.$row['middlename'].' '.$row['lastname'].'?'."</h4>";
                                                     }
                                                     ?>
                                                 </div>
@@ -254,7 +261,7 @@
                                       </table>
                                       <br>
                                       <?php 
-                                        $sql = "SELECT * FROM tbl_users ";
+                                        $sql = "SELECT * FROM tbl_users where type='alumni'";
                                         $result=mysqli_query($conn, $sql);
                                         $row = mysqli_num_rows($result);
                                     ?>

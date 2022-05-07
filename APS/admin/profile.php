@@ -89,6 +89,13 @@
                             </a>
                         </li>
                         <li class="sidebar-item">
+                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="concerns.php"
+                                aria-expanded="false">
+                                <i class="mdi mdi-message"></i>
+                                <span class="hide-menu">Concerns</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item">
                             <a class="sidebar-link waves-effect waves-dark sidebar-link" href="users.php"
                                 aria-expanded="false">
                                 <i class="mdi mdi-account"></i>

@@ -29,8 +29,10 @@ if (isset($_POST['form_submit'])) {
     }  
     include 'send_email_forms.php';
     
-    $sql = "INSERT INTO tbl_forms (	lastname, firstname, middlename, student_no, address, email, batch, gender, career, field, resume)
-     VALUES ('$lastname', '$firstname', '$middlename', '$student_no', '$address', '$emails', '$batch', '$gender', '$career', '$chk', '$file')";
+    $sql = "INSERT INTO tbl_forms (	lastname, firstname, middlename, student_no, address, email, batch, gender, career, field, resume, status)
+     VALUES ('$lastname', '$firstname', '$middlename', '$student_no', '$address', '$emails', '$batch', '$gender', '$career', '$chk', '$file', 'PENDING')";
+
+    $conn->query("UPDATE tbl_users SET stat='PENDING' WHERE student_id='$student_no'") or die($db_link->error);
 
     $query=mysqli_query($conn,$sql);
     echo "<script type=\"text/javascript\">
