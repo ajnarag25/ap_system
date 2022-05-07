@@ -126,4 +126,56 @@ if (isset($_GET['concernDel'])) {
     header("Location: concerns.php");
    }
 
+// Update Profile Admin
+if (isset($_POST['update_profile'])) {
+    $username = $_POST['user'];
+    $password1 = $_POST['pass1'];
+    $password2 = $_POST['pass2'];
+    $email = $_POST['mail'];
+
+    if ($password1 != $password2){ 
+        echo "<script type=\"text/javascript\">
+        alert(\"Password does not match!\");
+        window.location = \"profile.php\"
+        </script>";
+    }else{
+        $conn->query("UPDATE tbl_users SET username='$username', password='".password_hash($password1, PASSWORD_DEFAULT)."', email='$email'  WHERE user_id=1") or die($db_link->error);
+        echo "<script type=\"text/javascript\">
+        alert(\"Successfully updated your profile!\");
+        window.location = \"profile.php\"
+        </script>";
+    }
+}
+
+// Change Profile Pic
+if (isset($_POST['change_profile'])) {
+    $target_dir = "../alumni/uploads/";
+    $target_file = $target_dir . basename($_FILES["profile_pic"]["name"]);
+    $uploadOk = 1;
+    $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
+    $check = getimagesize($_FILES["profile_pic"]["tmp_name"]);
+
+    if($check !== false) {
+    
+        $uploadOk = 1;
+        if ($uploadOk == 0) {
+            echo "<script type=\"text/javascript\">
+            alert(\"Sorry, your file was not uploaded.\");
+            window.location = \"profile.php\"
+            </script>";
+    } else {
+      move_uploaded_file($_FILES["profile_pic"]["tmp_name"], $target_file);
+    }
+        $sql='UPDATE tbl_users SET avatar_path="'.$target_file.'" WHERE user_id=1';
+        $result = mysqli_query($conn, $sql);
+        header('location: profile.php');
+        
+      } else {
+        echo "<script type=\"text/javascript\">
+        alert(\"File is not an image!\");
+        window.location = \"profile.php\"
+        </script>";
+        $uploadOk = 0;
+      }
+}
 ?>

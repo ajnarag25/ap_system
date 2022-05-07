@@ -59,17 +59,17 @@
             <h5 class="modal-title" id="exampleModalLabel">Reset Password</h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-			<form action="" method="POST">
+			<form action="functions.php" method="POST">
 				<div class="modal-body">
 					<h5>Enter your student number:</h5>
-					<input type="text" class="form-control" placeholder="Enter Student Number" required>
+					<input type="text" class="form-control" placeholder="Enter Student Number" name="studentno" required>
 					<br>
 					<h5>Enter your email address:</h5>
-					<input type="email" class="form-control" placeholder="Enter Email" required>
+					<input type="email" class="form-control" placeholder="Enter Email" name="email" required>
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-					<button type="submit" class="btn btn-danger" name="">Reset</button>
+					<button type="submit" class="btn btn-danger" name="reset">Reset</button>
 				</div>
 			</form>
         </div>

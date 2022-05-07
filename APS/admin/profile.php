@@ -1,3 +1,5 @@
+<?php include 'connection.php';?>
+
 <!DOCTYPE html>
 <html dir="ltr" lang="en">
 
@@ -57,7 +59,7 @@
                     <ul class="navbar-nav float-end">
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark pro-pic" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                <img src="assets/images/users/1.png" alt="user" class="rounded-circle" width="31">
+                                <img src="assets/images/users/QCU_Logo_2019.png" alt="user" class="rounded-circle" width="40">
                             </a>
                             <ul class="dropdown-menu dropdown-menu-end user-dd animated" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" href="profile.php"><i class="ti-user me-1 ms-1"></i>
@@ -133,17 +135,33 @@
                     <div class="col-lg-4 col-xlg-3">
                         <div class="card">
                             <div class="card-body">
-                                <center class="mt-4"> <img src="assets/images/admin.png"
-                                        class="rounded-circle" width="150" />
+                                <center class="mt-4"> 
+                                    <?php 
+                                        $query = "SELECT * FROM tbl_users where type='admin'";
+                                        $result = mysqli_query($conn, $query);
+                                        while ($row = mysqli_fetch_array($result)) {
+                                    ?>
+                                    <img src="../alumni/<?php echo $row['avatar_path']?>" class="rounded-circle" width="150" />
+                                    <?php }; ?>
                                     <h4 class="card-title mt-2">Administrator</h4>
                                     <h6 class="card-subtitle">Alumni Placement System</h6>
+                                    <form action="functions.php" enctype="multipart/form-data" method="POST">
+                                        <input type="file" name="profile_pic" class="form-control" required>
+                                        <br>
+                                        <button type="submit" class="btn btn-primary" name="change_profile">Change Profile Picture</button>
+                                    </form>
                                 </center>
                             </div>
                             <div>
                                 <hr>
                             </div>
                             <div class="card-body"> <small class="text-muted">Email address </small>
-                                <h6>placement.alumni.relation@qcu.edu.ph</h6> <small class="text-muted pt-4 db">Phone</small>
+                            <?php 
+                                        $query = "SELECT * FROM tbl_users where type='admin'";
+                                        $result = mysqli_query($conn, $query);
+                                        while ($row = mysqli_fetch_array($result)) {
+                                    ?>
+                                <h6><?php echo $row['email'] ?></h6> <small class="text-muted pt-4 db">Phone</small>
                                 <h6>+639196515686</h6> <small class="text-muted pt-4 db">Address</small>
                                 <h6>Room IA206e, 2nd Floor TechVoc Building  <br> San Bartolome, Novaliches, 1116</h6>
                                 <div class="map-box">
@@ -151,52 +169,73 @@
                                         src="assets/images/map.png"
                                         width="100%" height="150" frameborder="0" style="border:0"
                                         allowfullscreen></iframe>
-                                </div> <small class="text-muted pt-4 db">Social Profile</small>
-                                <br />
-                                <button class="btn btn-circle btn-secondary"><i class="mdi mdi-facebook"></i></button>
-                                <button class="btn btn-circle btn-secondary"><i class="mdi mdi-twitter"></i></button>
-                                <button class="btn btn-circle btn-secondary"><i
-                                        class="mdi mdi-youtube-play"></i></button>
+                                </div> 
+                               <?php }; ?>
                             </div>
                         </div>
                     </div>
                     <div class="col-lg-8 col-xlg-9">
                         <div class="card">
                             <div class="card-body">
-                                <form class="form-horizontal form-material mx-2">
+                                <form class="form-horizontal form-material mx-2" action="functions.php" method="POST">
+                                    <?php 
+                                        $query = "SELECT * FROM tbl_users where type='admin'";
+                                        $result = mysqli_query($conn, $query);
+                                        while ($row = mysqli_fetch_array($result)) {
+                                    ?>
                                     <div class="form-group">
-                                        <label class="col-md-12">Full Name</label>
+                                        <label class="col-md-12">Username</label>
                                         <div class="col-md-12">
-                                            <input type="text" placeholder="Administrator"
+                                            <input type="text" name="user" value="<?php echo $row['username'] ?>" 
+                                                class="form-control form-control-line">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="example-email" class="col-md-12">Password</label>
+                                        <div class="col-md-12">
+                                            <input type="password" name="pass1" value="<?php echo $row['password'] ?>" 
+                                                class="form-control form-control-line" >
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="example-email" class="col-md-12">Retype Password</label>
+                                        <div class="col-md-12">
+                                            <input type="password" name="pass2" value="<?php echo $row['password'] ?>" 
                                                 class="form-control form-control-line">
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label for="example-email" class="col-md-12">Email</label>
                                         <div class="col-md-12">
-                                            <input type="email" placeholder="placement.alumni.relation@qcu.edu.ph"
-                                                class="form-control form-control-line" name="example-email"
-                                                id="example-email">
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="col-md-12">Password</label>
-                                        <div class="col-md-12">
-                                            <input type="password" value="password"
-                                                class="form-control form-control-line">
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="col-md-12">Phone No</label>
-                                        <div class="col-md-12">
-                                            <input type="text" placeholder="+639196515686"
-                                                class="form-control form-control-line">
+                                            <input type="email" name="mail" value="<?php echo $row['email'] ?>"
+                                                class="form-control form-control-line" >
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <div class="col-sm-12">
-                                            <button class="btn btn-success text-white">Update Profile</button>
+                                            <button type="button" data-bs-toggle="modal" data-bs-target="#changeModal" class="btn btn-success text-white">Update Profile</button>
                                         </div>
+
+                                        <!-- Change Profile-->
+                                        <div class="modal fade" id="changeModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel">Update Profile</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <form action="functions.php" method="POST">
+                                                    <div class="modal-body">
+                                                        <h5>Update profile now?</h5>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                        <button type="submit" class="btn btn-success" name="update_profile" style="color:white">Yes</button>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                            <?php }; ?>
+                                            </div>
                                     </div>
                                 </form>
                             </div>
@@ -211,6 +250,8 @@
         </div>
     </div>
     
+
+
     <script src="assets/libs/jquery/dist/jquery.min.js"></script>
     <script src="assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="assets/extra-libs/sparkline/sparkline.js"></script>

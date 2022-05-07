@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost: 3307
--- Generation Time: May 03, 2022 at 04:11 PM
+-- Generation Time: May 07, 2022 at 06:52 PM
 -- Server version: 10.4.20-MariaDB
 -- PHP Version: 8.0.8
 
@@ -40,6 +40,21 @@ INSERT INTO `tbl_branch` (`branch_id`, `branch_name`) VALUES
 (1, 'San Bartolome (Main)'),
 (2, 'San Francisco'),
 (3, 'Batasan');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_concerns`
+--
+
+CREATE TABLE `tbl_concerns` (
+  `id` int(11) NOT NULL,
+  `name` varchar(100) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `phone` varchar(100) NOT NULL,
+  `message` text NOT NULL,
+  `feedback` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -102,15 +117,9 @@ CREATE TABLE `tbl_forms` (
   `gender` varchar(100) NOT NULL,
   `career` varchar(100) NOT NULL,
   `field` varchar(100) NOT NULL,
-  `resume` text NOT NULL
+  `resume` text NOT NULL,
+  `status` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `tbl_forms`
---
-
-INSERT INTO `tbl_forms` (`id`, `lastname`, `firstname`, `middlename`, `student_no`, `address`, `email`, `batch`, `gender`, `career`, `field`, `resume`) VALUES
-(24, 'Narag', 'Avor John', 'Atienza', 'Student12345', 'blk 3 lot 8 meadow park subdivision, molino 4', 'ajnarag25@gmail.com', 2020, 'Male', 'Computer Science and Information Technology', 'Computer Programmer, Web Developer, ', 'CV - AVOR JOHN NARAG.pdf');
 
 -- --------------------------------------------------------
 
@@ -133,16 +142,18 @@ CREATE TABLE `tbl_users` (
   `branch_id` int(30) NOT NULL,
   `type` enum('admin','alumni') NOT NULL DEFAULT 'alumni',
   `is_verified` tinyint(1) NOT NULL DEFAULT 0,
-  `avatar_path` varchar(500) NOT NULL
+  `avatar_path` varchar(500) NOT NULL,
+  `stat` varchar(100) NOT NULL,
+  `feedback` text NOT NULL,
+  `otp` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `tbl_users`
 --
 
-INSERT INTO `tbl_users` (`user_id`, `student_id`, `username`, `password`, `email`, `firstname`, `middlename`, `lastname`, `gender`, `batch`, `course_id`, `branch_id`, `type`, `is_verified`, `avatar_path`) VALUES
-(1, '', 'admin', '$2y$10$CfkyGS2piqCXjQkVGkPsiedGlcgEIiREgCWYW3OO2r2jDL2H1ll.G', 'keiz@gmail.com', 'Admin', '', '', 'Male', 2021, 1, 1, 'admin', 1, 'uploads/1639122180224141356_366504745012952_5880414480127360155_n.png'),
-(17, 'Student12345', 'ajnarag25', '$2y$10$rqALP7CM7PDWlmuXqTBbmOku/f4wZriLhfh5WGFIGscrWSsJCQiu.', 'ajnarag25@gmail.com', 'Avor John', 'Atienza', 'Narag', 'Male', 2020, 1, 2, 'alumni', 1, 'uploads/1651235813img_568656.png');
+INSERT INTO `tbl_users` (`user_id`, `student_id`, `username`, `password`, `email`, `firstname`, `middlename`, `lastname`, `gender`, `batch`, `course_id`, `branch_id`, `type`, `is_verified`, `avatar_path`, `stat`, `feedback`, `otp`) VALUES
+(1, '', 'admin', '$2y$10$HXpCQNnU8sXawjBYGQwmZeC9vF0OtHKVJSm9lFHV6r6FJmbaWJbJO', 'placement.alumni.relation@qcu.edu.ph', 'Admin', '', '', 'Male', 2021, 1, 1, 'admin', 1, '../alumni/uploads/laudalasan.gif', '', '', 0);
 
 --
 -- Indexes for dumped tables
@@ -153,6 +164,12 @@ INSERT INTO `tbl_users` (`user_id`, `student_id`, `username`, `password`, `email
 --
 ALTER TABLE `tbl_branch`
   ADD PRIMARY KEY (`branch_id`);
+
+--
+-- Indexes for table `tbl_concerns`
+--
+ALTER TABLE `tbl_concerns`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `tbl_courses`
@@ -191,6 +208,12 @@ ALTER TABLE `tbl_branch`
   MODIFY `branch_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
+-- AUTO_INCREMENT for table `tbl_concerns`
+--
+ALTER TABLE `tbl_concerns`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
 -- AUTO_INCREMENT for table `tbl_courses`
 --
 ALTER TABLE `tbl_courses`
@@ -206,13 +229,13 @@ ALTER TABLE `tbl_fields`
 -- AUTO_INCREMENT for table `tbl_forms`
 --
 ALTER TABLE `tbl_forms`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
 -- AUTO_INCREMENT for table `tbl_users`
 --
 ALTER TABLE `tbl_users`
-  MODIFY `user_id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `user_id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- Constraints for dumped tables
