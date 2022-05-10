@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost: 3307
--- Generation Time: May 07, 2022 at 06:52 PM
+-- Generation Time: May 10, 2022 at 05:08 PM
 -- Server version: 10.4.20-MariaDB
 -- PHP Version: 8.0.8
 
@@ -124,6 +124,19 @@ CREATE TABLE `tbl_forms` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `tbl_jobs`
+--
+
+CREATE TABLE `tbl_jobs` (
+  `id` int(11) NOT NULL,
+  `image` text NOT NULL,
+  `job_name` text NOT NULL,
+  `job_desc` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `tbl_users`
 --
 
@@ -153,7 +166,8 @@ CREATE TABLE `tbl_users` (
 --
 
 INSERT INTO `tbl_users` (`user_id`, `student_id`, `username`, `password`, `email`, `firstname`, `middlename`, `lastname`, `gender`, `batch`, `course_id`, `branch_id`, `type`, `is_verified`, `avatar_path`, `stat`, `feedback`, `otp`) VALUES
-(1, '', 'admin', '$2y$10$HXpCQNnU8sXawjBYGQwmZeC9vF0OtHKVJSm9lFHV6r6FJmbaWJbJO', 'placement.alumni.relation@qcu.edu.ph', 'Admin', '', '', 'Male', 2021, 1, 1, 'admin', 1, '../alumni/uploads/laudalasan.gif', '', '', 0);
+(1, '', 'admin', '$2y$10$.2o21URX0UimlgyK2rsrTe69K/3DdMpJ5McSOxzSZOYp.lqudazR2', 'placement.alumni.relation@qcu.edu.ph', 'Admin', '', '', 'Male', 2021, 1, 1, 'admin', 1, '../alumni/uploads/laudalasan.gif', '', '', 0),
+(22, 'Student12345', 'ajnarag25', '$2y$10$5UtTMsTvnhdmaMguON6u3edb8/jIm.9YCWTA.mMI1bXn6NyuCVr06', 'ajnarag25@gmail.com', 'Avor john', 'Atienza', 'Narag', 'Male', 2019, 1, 2, 'alumni', 1, 'uploads/1652020333img_568656.png', 'NO FORM SUBMITTED', 'N/A', 834);
 
 --
 -- Indexes for dumped tables
@@ -187,6 +201,12 @@ ALTER TABLE `tbl_fields`
 -- Indexes for table `tbl_forms`
 --
 ALTER TABLE `tbl_forms`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `tbl_jobs`
+--
+ALTER TABLE `tbl_jobs`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -232,10 +252,16 @@ ALTER TABLE `tbl_forms`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
+-- AUTO_INCREMENT for table `tbl_jobs`
+--
+ALTER TABLE `tbl_jobs`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
 -- AUTO_INCREMENT for table `tbl_users`
 --
 ALTER TABLE `tbl_users`
-  MODIFY `user_id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `user_id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- Constraints for dumped tables

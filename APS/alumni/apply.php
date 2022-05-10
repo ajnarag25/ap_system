@@ -148,7 +148,7 @@ if (!isset($_SESSION['user'])) {
                 </div>
                 <div class="form-group col-md-6">
                 <label for="">Upload Resume <span style="color: red;">*</span></label>
-                  <input type="file" class="form-control" name="file" required>
+                  <input type="file" class="form-control" name="file" accept="application/pdf" required>
                 </div>
                 <div class="form-group col-md-6" id="id2">
                   <label for="">Select at least 3</label>

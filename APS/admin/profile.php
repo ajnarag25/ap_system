@@ -84,6 +84,13 @@
                             </a>
                         </li>
                         <li class="sidebar-item">
+                            <a class="sidebar-link waves-effect waves-dark sidebar-link" href="job.php"
+                                aria-expanded="false">
+                                <i class="mdi mdi-book"></i>
+                                <span class="hide-menu">Jobs</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item">
                             <a class="sidebar-link waves-effect waves-dark sidebar-link" href="forms.php"
                                 aria-expanded="false">
                                 <i class="mdi mdi-note-multiple"></i>
@@ -141,7 +148,7 @@
                                         $result = mysqli_query($conn, $query);
                                         while ($row = mysqli_fetch_array($result)) {
                                     ?>
-                                    <img src="../alumni/<?php echo $row['avatar_path']?>" class="rounded-circle" width="150" />
+                                    <img src="<?php echo $row['avatar_path']?>" class="rounded-circle" width="150" />
                                     <?php }; ?>
                                     <h4 class="card-title mt-2">Administrator</h4>
                                     <h6 class="card-subtitle">Alumni Placement System</h6>

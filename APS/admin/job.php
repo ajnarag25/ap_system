@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="robots" content="noindex,nofollow">
-    <title>ALUMNI PLACEMENT SYSTEM - Concerns</title>
+    <title>ALUMNI PLACEMENT SYSTEM - Jobs</title>
     <link rel="canonical" href="https://www.wrappixel.com/templates/niceadmin-lite/" />
     <link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicon.png">
     <link href="dist/css/style.min.css" rel="stylesheet">
@@ -120,7 +120,7 @@
             <div class="page-breadcrumb">
                 <div class="row">
                     <div class="col-5 align-self-center">
-                        <h4 class="page-title">Concerns</h4>
+                        <h4 class="page-title">Jobs</h4>
                     </div>
                     <div class="col-7 align-self-center">
                         <div class="d-flex align-items-center justify-content-end">
@@ -146,72 +146,57 @@
                                         <thead class="thead-dark">
                                           <tr>
                                             <th scope="col">#</th>
-                                            <th scope="col">Name</th>
-                                            <th scope="col">Email</th>
-                                            <th scope="col">Phone</th>
-                                            <th scope="col">View Message</th>
+                                            <th scope="col">Image</th>
+                                            <th scope="col">Job Name</th>
+                                            <th scope="col">Job Description</th>
                                             <th scope="col">Action</th>
                                           </tr>
                                         </thead>
                                         <tbody>
                                         <?php 
-                                            $query = "SELECT * FROM tbl_concerns ";
+                                            $query = "SELECT * FROM tbl_jobs ";
                                             $result = mysqli_query($conn, $query);
                                             while ($row = mysqli_fetch_array($result)) {
                                         ?>
 
                                           <tr>
                                             <th><?php echo $row['id']; ?></th>
-                                            <td><?php echo $row['name']?></td>
-                                            <td><?php echo $row['email']; ?></td>
-                                            <td><?php echo $row['phone']; ?></td>
-                                            <td><button class="btn btn-success" style="color:white" data-bs-toggle="modal"  data-bs-target="#viewModal<?php echo $row['id']?>">View</button></td>
+                                            <th><img src="<?php echo $row['image']?>" width="50" alt=""></th>
+                                            <td><?php echo $row['job_name']?></td>
+                                            <td><?php echo $row['job_desc']; ?></td>
                                             <td>
-                                                <button class="btn btn-primary" data-bs-toggle="modal"  data-bs-target="#composeModal<?php echo $row['id']?>"> <i class="mdi mdi-message"></i></button>
+                                                <button class="btn btn-primary" data-bs-toggle="modal"  data-bs-target="#editModal<?php echo $row['id']?>"> <i class="mdi mdi-pencil"></i></button>
                                                 <button class="btn btn-danger" style="color:white" data-bs-toggle="modal"  data-bs-target="#deleteModal<?php echo $row['id'] ?>"> <i class="mdi mdi-delete"></i></button>
                                             </td>
 
                                           </tr>
                                         
-                                        <!-- Compose Message  -->
-                                         <div class="modal fade" id="composeModal<?php echo $row['id']?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                        <div class="modal-dialog">
-                                            <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title" id="exampleModalLabel">Send Message for User: <?php echo $row['name'] ?></h5>
-                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                            </div>
-                                            <form action="functions.php" method="POST">
-                                                <div class="modal-body">
-                                                <h5>Compose Message:</h5>
-                                                    <input type="hidden" name="id" value="<?php echo $row['id']?>">
-                                                    <textarea class="form-control" name="msg" cols="30" rows="5" required></textarea>
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                                    <button type="submit" class="btn btn-success" name="composeConcern" style="color:white" name="">Send</button>
-                                                </div>
-                                            </form>
-                                            </div>
-                                        </div>
-                                        </div>
-                                        
-
-                                        <!-- Modal View-->
-                                        <div class="modal fade" id="viewModal<?php echo $row['id'] ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <!-- Modal Edit-->
+                                        <div class="modal fade" id="editModal<?php echo $row['id']?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                             <div class="modal-dialog">
                                             <div class="modal-content">
                                                 <div class="modal-header">
-                                                    <form action="functions.php" method="POST">
-                                                        <h5 class="modal-title" id="exampleModalLabel">Message</h5>
-                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                        </div>
-                                                        <div class="modal-body">
-                                                            <textarea name="" class="form-control" id="" cols="30" rows="5" readonly><?php echo $row['message'] ?></textarea>
-                                                        </div>
-                                                        
-                                                    </form>
+                                                    <h5 class="modal-title" id="exampleModalLabel">Edit Job <?php echo $row['job_name']?></h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                 </div>
+                                                <form action="functions.php" method="POST" enctype="multipart/form-data">
+                                                    <div class="modal-body">
+                                                    <input type="hidden" class="form-control" placeholder="" value="<?php echo $row['id']?>" name="job_id" >
+                                                        <div class="text-center">
+                                                            <img src="<?php echo $row['image']?>" width="150">
+                                                        </div>
+                                                        <br>
+                                                        <h5>Job Title</h5>
+                                                        <input type="text" class="form-control" placeholder="" value="<?php echo $row['job_name']?>" name="update_jobname" >
+                                                        <br>
+                                                        <h5>Job Description</h5>
+                                                        <textarea class="form-control" name="update_jobdesc"  id="" cols="30" rows="10" required><?php echo $row['job_desc']?></textarea>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                                        <button type="submit" class="btn btn-primary" style="color:white" name="updateJob" >Update</button>
+                                                    </div>
+                                                </form>
                                             </div>
                                             </div>
                                         </div>
@@ -222,15 +207,15 @@
                                             <div class="modal-dialog">
                                             <div class="modal-content">
                                                 <div class="modal-header">
-                                                <h5 class="modal-title" id="exampleModalLabel">Delete User <?php echo $row['name'] ?></h5>
-                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                    <h5 class="modal-title" id="exampleModalLabel">Delete Job <?php echo $row['job_name'] ?></h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                 </div>
                                                 <div class="modal-body">
-                                                <h4>Are you sure you want to delete this user?</h4>
+                                                    <h4>Are you sure you want to delete this job?</h4>
                                                 </div>
                                                 <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                                                <a class="btn btn-danger" style="color:white" href="functions.php?concernDel=<?php echo $row["id"] ?>">Delete</a>
+                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                                    <a class="btn btn-danger" style="color:white" href="functions.php?jobDel=<?php echo $row["id"] ?>">Delete</a>
                                                 </div>
                                             </div>
                                             </div>
@@ -241,8 +226,39 @@
 
                                       </table>
                                       <br>
+                                      <button class="btn btn-primary" data-bs-toggle="modal"  data-bs-target="#addjobModal"> <i class="mdi mdi-hospital"></i>  Add Job</button>
+
+                                      <!-- Modal Add Job-->
+                                      <div class="modal fade" id="addjobModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="exampleModalLabel">Add Job</h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <form action="functions.php" method="POST" enctype="multipart/form-data">
+                                                    <div class="modal-body">
+                                                        <h5>Upload Image</h5>
+                                                        <input type="file" class="form-control" name="uploadImage" id="" accept="image/png, image/jpeg" style="color: black" required>
+                                                        <br><br>
+                                                        <h5>Job Title</h5>
+                                                        <input type="text" class="form-control" placeholder="" name="jobname" required>
+                                                        <br>
+                                                        <h5>Job Description</h5>
+                                                        <textarea class="form-control" name="jobdesc" id="" cols="30" rows="10" required></textarea>
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                                        <button type="submit" class="btn btn-primary" style="color:white" name="addJob" >Add</button>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                            </div>
+                                        </div>
+
+                                      <br><br>
                                       <?php 
-                                        $sql = "SELECT * FROM tbl_concerns ";
+                                        $sql = "SELECT * FROM tbl_jobs ";
                                         $result=mysqli_query($conn, $sql);
                                         $row = mysqli_num_rows($result);
                                     ?>

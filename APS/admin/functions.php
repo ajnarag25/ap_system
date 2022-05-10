@@ -178,4 +178,59 @@ if (isset($_POST['change_profile'])) {
         $uploadOk = 0;
       }
 }
+
+
+if (isset($_POST['addJob'])) {
+    $jobName = $_POST['jobname'];
+    $jobDesc = $_POST['jobdesc'];
+
+    $target_dir = "../alumni/uploads/";
+    $target_file = $target_dir . basename($_FILES["uploadImage"]["name"]);
+    $uploadOk = 1;
+    $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
+    $checkImage = getimagesize($_FILES["uploadImage"]["tmp_name"]);
+
+    $sql = "SELECT * FROM tbl_jobs WHERE job_name='$jobName'";
+    $result = mysqli_query($conn, $sql);
+    $check = mysqli_num_rows($result);
+    
+
+    if ($check == 1){
+        echo "<script type=\"text/javascript\">
+        alert(\"Job is already in the database!\");
+        window.location = \"job.php\"
+        </script>";
+    }else if($checkImage == false) {
+        echo "<script type=\"text/javascript\">
+        alert(\"File is not an image!\");
+        window.location = \"job.php\"
+        </script>";
+    }else{
+        move_uploaded_file($_FILES["uploadImage"]["tmp_name"], $target_file);
+        $sql = "INSERT INTO tbl_jobs ( image, job_name, job_desc) VALUES ('$target_file', '$jobName', '$jobDesc')";
+        $query=mysqli_query($conn,$sql);
+        header('location: job.php');
+    }
+        
+ 
+}
+
+// Update Job
+if (isset($_POST['updateJob'])) {
+    $jobId = $_POST['job_id'];
+    $jobName = $_POST['update_jobname'];
+    $jobDesc = $_POST['update_jobdesc'];
+  
+    $sql="UPDATE tbl_jobs SET job_name='$jobName', job_desc='$jobDesc' WHERE id=$jobId";
+    $query=mysqli_query($conn,$sql);
+    header('location: job.php');
+ 
+}
+
+// Delete Job
+if (isset($_GET['jobDel'])) {
+    $id = $_GET['jobDel'];
+    $conn->query("DELETE FROM tbl_jobs WHERE id=$id") or die($db_link->error);
+    header("Location: job.php");
+   }
 ?>
