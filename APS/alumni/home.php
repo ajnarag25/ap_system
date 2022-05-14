@@ -1,5 +1,5 @@
 <?php 
-
+include 'config.php';
 session_start();
 
 if (!isset($_SESSION['user'])) {
@@ -18,6 +18,13 @@ if (!isset($_SESSION['user'])) {
     <title>Home</title>
 </head>
 <style>
+  .row{
+    align-items: center;
+  }
+  .card{
+    padding: 30px;
+    background-color: rgb(214,214,214);
+  }
 	.logo-text{
 		display: flex;
 		align-items: center;
@@ -54,50 +61,43 @@ if (!isset($_SESSION['user'])) {
           </ul>
         </ul>
   </div>
-
-    <br><br><br>
-
-    <div class="text-center links">
-      <div class="row">
-        <div class="col-sm-4">
-          <img src="images/1.jpg" width="280px" alt="" data-aos="zoom-out" data-aos-duration="1000" data-aos-once="true">
-          <br><br>
-          <p data-aos="zoom-in" data-aos-duration="1000" data-aos-once="true">Register now to join our <br> Virtual Career Fair on March <br> 1 at 1:00 PM.</p>
-          <a class="btn btn-success"  data-bs-toggle="modal" data-bs-target="#aps1Modal">Read More</a>
-        </div>
-        <div class="col-sm-4">
-          <img src="images/2.jpg" width="280px" alt="" data-aos="zoom-out" data-aos-duration="1000" data-aos-once="true">
-          <br><br>
-          <p data-aos="zoom-in" data-aos-duration="1000" data-aos-once="true">SUN LIFE is looking for a <br> Financial Adviser </p>
-          <a class="btn btn-success"  data-bs-toggle="modal" data-bs-target="#aps2Modal">Read More </a>
-        </div>
-        <div class="col-sm-4">
-          <img src="images/3.jpg" width="280px" alt="" data-aos="zoom-out" data-aos-duration="1000" data-aos-once="true">
-          <br><br>
-            <p data-aos="zoom-in" data-aos-duration="1000" data-aos-once="true">FAArt Creative Design Studio is <br> Looking for an Account Executive <br> and a Graphic Artist!</p>
-            <a class="btn btn-success"  data-bs-toggle="modal" data-bs-target="#aps3Modal">Read More</a>
-        </div>
-      </div>
+  <span><center style="font-size: 69px; color:#C8FFFC; margin-top: 8rem;" data-aos="zoom-out" data-aos-duration="1000" data-aos-once="true">"Available Job is Here!" <br> <a class="btn btn-success" href="#jobs">View Available Jobs</a></span></h1>
+        <div class="content-header">
     </div>
+</header>
+  <div id="jobs">
+  <?php 
+      $query = "SELECT * FROM tbl_jobs";
+      $result = mysqli_query($conn, $query);
+      while ($row = mysqli_fetch_array($result)) {
+      echo '
+      <div class="text-center links card">
+        <div class="row">
+            <div class="col-md-6">
+              <img src="'.$row['image'].'" width="250px" alt="" data-aos="zoom-out" data-aos-duration="1000" data-aos-once="true">
+            </div>
+            <div class="col-md-4">
+              <h4 class="text-center" style="color:black" data-aos="zoom-in" data-aos-duration="1000" data-aos-once="true">'.$row['job_name'].'</h4>
+              <a class="btn btn-success"  data-bs-toggle="modal" data-bs-target="#jobModal'.$row['id'].'">Read More</a>
+            </div>
+        </div>
+      </div>' ?>
    
      <!-- Modal1-->
-     <div class="modal fade" id="aps1Modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+     <div class="modal fade" id="jobModal<?php echo $row['id']?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">VIRTUAL CAREER FAIR <br> February 11, 2022</h5>
+            <h5 class="modal-title" id="exampleModalLabel"><?php echo $row['job_name']?></h5>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
               <div class="text-center">
-              <img src="images/1.jpg" width="180px">
+              <img src="<?php echo $row['image']?>" width="180px">
               <br><br>
               <h4>JOIN US AND ENJOY THESE BENEFITS:</h4>
-              <ul>
-                <li>QCU Placement will assist you in preparing for your job search and connect with employers virtually.</li>
-                <br>
-                <li>In celebration of University Week, we are excited to partner with JOBS180.com to run career fairs in a virtual format on Monday, March 1, 2022</li>
-              </ul>
+              <br>
+              <textarea class="form-control" cols="30" rows="15" readonly><?php echo $row['job_desc']?></textarea>
               </div>
             </div>
             <div class="text-center">
@@ -109,104 +109,9 @@ if (!isset($_SESSION['user'])) {
         </div>
         </div>
     </div>
-
-
-     <!-- Modal2-->
-     <div class="modal fade" id="aps2Modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">SUN LIFE Is Looking For A Financial Advisor <br> February 4, 2022 </h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-              <div class="text-center">
-              <img src="images/2.jpg" width="180px">
-              </div>
-              <br><br>
-              <h4 class="text-center">JOIN US AND ENJOY THESE BENEFITS:</h4>
-              <br>
-              <ul>
-                <li>High Income</li>
-                <li>Monthly Cash Bonus</li>
-                <li>Quarterly Incentives (Limited Edition and Luxury Items, Buffets, Staycations)</li>
-                <li>All-Expense Paid Luxury Travel Incentives (Local and International)</li>
-                <li>National and International Recognition of Your Achievements</li>
-                <li>Lots of Free Personal Skills and Enhancement Trainings</li>
-                <li>Fun and Helpful Teammates</li>
-              </ul>
-              <br>
-                <div class="text-center">
-                  <h4>INTERESTED?</h4>
-                  <br>
-                  <p>Please send your resume to Rolando.o.tanglao@sunlife.com.ph</p>
-                  <p>Look For: Mr. Rolando O. Tanglao</p>
-                  <p>Contact Number: 09176541319</p>
-                </div>
-              </div>
-            <div class="text-center">
-              <form action="apply.php#form">
-                <button type="submit" class="btn btn-success">Interested? <br> Register Here!</button>
-              </form>
-            <br><br>
-            </div>
-        </div>
-        </div>
-    </div>
-
-
-
-    <!-- Modal3-->
-    <div class="modal fade" id="aps3Modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog">
-      <div class="modal-content">
-          <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">FAArt Creative Design Studio Is Looking For An Account Executive And A Graphic Artist! <br> February 4, 2022</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
-            <div class="text-center">
-            <img src="images/3.jpg" width="180px">
-            </div>
-            <br><br>
-            <h4 class="text-center">JOB QUALIFICATIONS:</h4>
-            <br>
-            <ol>
-              <li>Open to Fresh grads, Senior High grad, and experienced Account Executive</li>
-              <li>Must be knowledgeable with Microsoft Office & Google apps (Google Sheet, Google Docs, etc.)</li>
-              <li>Must at least be proficient in English and Filipino</li>
-              <li>Must be willing to learn /be trained and work in a team</li>
-              <li>Must have a heart of service. Towards clients and teammates</li>
-              <li>Must be available to start ASAP</li>
-              <li>Must be willing to work ONSITE (Office is located in Q.C.)</li>
-              <li>Open to working long hours or Weekends/holidays (if needed)</li>
-            </ol>
-            <br>
-            <div class="text-center">
-              <h4>RESPONSIBILTY:</h4>
-              <p>Manage clients’ requests for advertising materials</p>
-            </div>
-
-            <br>
-            <h4 class="text-center">JOB PERKS:</h4>
-            <br>
-            <ol>
-              <li>Complimentary Lunch Meals</li>
-              <li>Point-to-point shared shuttle service</li>
-              <li>Medical, Dental and Optical Allowance</li>
-              <li>Competitive Profit Sharing Bonuses</li>
-            </ol>
-            </div>
-          <div class="text-center">
-            <form action="apply.php#form">
-              <button type="submit" class="btn btn-success">Interested? <br> Register Here!</button>
-            </form>
-          <br><br>
-          </div>
-      </div>
-      </div>
   </div>
-  
+  <?php }; ?>
+
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <script>
