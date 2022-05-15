@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost: 3307
--- Generation Time: May 10, 2022 at 05:08 PM
+-- Generation Time: May 14, 2022 at 07:39 AM
 -- Server version: 10.4.20-MariaDB
 -- PHP Version: 8.0.8
 
@@ -134,6 +134,15 @@ CREATE TABLE `tbl_jobs` (
   `job_desc` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `tbl_jobs`
+--
+
+INSERT INTO `tbl_jobs` (`id`, `image`, `job_name`, `job_desc`) VALUES
+(13, '../alumni/uploads/1.jpg', 'VIRTUAL CAREER FAIR', 'QCU Placement will assist you in preparing for your job search and connect with employers virtually.\r\n\r\nIn celebration of University Week, we are excited to partner with JOBS180.com to run career fairs in a virtual format on Monday, March 1, 2022\r\n\r\nREGISTRATION is now open!\r\n\r\nClick the link above to join the fair and sign-up for 1:1 and group meetings with your future employers.\r\n\r\n(Don’t forget to register also for the coming webinar on February 23, 2022)'),
+(14, '../alumni/uploads/2.jpg', 'SUN LIFE Is Looking For A Financial Advisor', 'High Income\r\nMonthly Cash Bonus\r\nQuarterly Incentives (Limited Edition and Luxury Items, Buffets, Staycations)\r\nAll-Expense Paid Luxury Travel Incentives (Local and International)\r\nNational and International Recognition of Your Achievements\r\nLots of Free Personal Skills and Enhancement Trainings\r\nFun and Helpful Teammates\r\n\r\nINTERESTED?\r\nPlease send your resume to Rolando.o.tanglao@sunlife.com.ph\r\nLook For: Mr. Rolando O. Tanglao\r\nContact Number: 09176541319'),
+(15, '../alumni/uploads/3.jpg', 'FAArt Creative Design Studio Is Looking For An Account Executive And A Graphic Artist!', 'JOB QUALIFICATIONS:\r\nOpen to Fresh grads, Senior High grad, and experienced Account Executive\r\nMust be knowledgeable with Microsoft Office & Google apps (Google Sheet, Google Docs, etc.)\r\nMust at least be proficient in English and Filipino\r\nMust be willing to learn /be trained and work in a team\r\nMust have a heart of service. Towards clients and teammates\r\nMust be available to start ASAP\r\nMust be willing to work ONSITE (Office is located in Q.C.)\r\nOpen to working long hours or Weekends/holidays (if needed)\r\n\r\nRESPONSIBILITY:\r\nManage clients’ requests for advertising materials\r\n\r\nJOB PERKS:\r\nComplimentary Lunch Meals\r\nPoint-to-point shared shuttle service\r\nMedical, Dental and Optical Allowance\r\nCompetitive Profit Sharing Bonuses');
+
 -- --------------------------------------------------------
 
 --
@@ -166,7 +175,7 @@ CREATE TABLE `tbl_users` (
 --
 
 INSERT INTO `tbl_users` (`user_id`, `student_id`, `username`, `password`, `email`, `firstname`, `middlename`, `lastname`, `gender`, `batch`, `course_id`, `branch_id`, `type`, `is_verified`, `avatar_path`, `stat`, `feedback`, `otp`) VALUES
-(1, '', 'admin', '$2y$10$.2o21URX0UimlgyK2rsrTe69K/3DdMpJ5McSOxzSZOYp.lqudazR2', 'placement.alumni.relation@qcu.edu.ph', 'Admin', '', '', 'Male', 2021, 1, 1, 'admin', 1, '../alumni/uploads/laudalasan.gif', '', '', 0),
+(1, '', 'admin', '$2y$10$pYt1rB2S6GvZ6dpqkOSI9OAZJ5MkADKKe5tn5lDX5PqIXgXU1W3AO', 'placement.alumni.relation@qcu.edu.ph', 'Admin', '', '', 'Male', 2021, 1, 1, 'admin', 1, '../alumni/uploads/laudalasan.gif', '', '', 0),
 (22, 'Student12345', 'ajnarag25', '$2y$10$5UtTMsTvnhdmaMguON6u3edb8/jIm.9YCWTA.mMI1bXn6NyuCVr06', 'ajnarag25@gmail.com', 'Avor john', 'Atienza', 'Narag', 'Male', 2019, 1, 2, 'alumni', 1, 'uploads/1652020333img_568656.png', 'NO FORM SUBMITTED', 'N/A', 834);
 
 --
@@ -255,7 +264,7 @@ ALTER TABLE `tbl_forms`
 -- AUTO_INCREMENT for table `tbl_jobs`
 --
 ALTER TABLE `tbl_jobs`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `tbl_users`
