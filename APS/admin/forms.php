@@ -153,6 +153,7 @@
                                             <th scope="col">Batch</th>
                                             <th scope="col">Career</th>
                                             <th scope="col">Field</th>
+                                            <th scope="col">Job</th>
                                             <th scope="col">File</th>
                                             <th scope="col">Action</th>
                                             <th scope="col">Send Verification</th>
@@ -164,6 +165,7 @@
                                             $query = "SELECT * FROM tbl_forms ";
                                             $result = mysqli_query($conn, $query);
                                             while ($row = mysqli_fetch_array($result)) {
+                                            $name = $row['lastname'].' '. $row['firstname'].' '. $row['middlename'];
                                         ?>
 
                                           <tr>
@@ -175,15 +177,43 @@
                                             <td><?php echo $row['batch']; ?></td>
                                             <td><?php echo $row['career']; ?></td>
                                             <td><?php echo $row['field']; ?></td>
+                                            <td><?php echo $row['job']; ?></td>
                                             <td><a  target="_blank" href="functions.php?file=<?php echo $row['resume']; ?>" ><?php echo $row['resume'] ?></a></td>
                                             <td>
+                                            <button class="btn btn-warning" data-bs-toggle="modal" style="color:white"  data-bs-target="#sendEmail<?php echo $row['id']?>"> <i class="mdi mdi-message"></i></button>
                                                 <button class="btn btn-primary" data-bs-toggle="modal"  data-bs-target="#editModal<?php echo $row['id']?>"> <i class="mdi mdi-pencil"></i></button>
                                                 <button class="btn btn-danger" style="color:white" data-bs-toggle="modal"  data-bs-target="#deleteModal<?php echo $row['id'] ?>"> <i class="mdi mdi-delete"></i></button>
                                             </td>
                                             <td><button class="btn btn-success" style="color:white" data-bs-toggle="modal"  data-bs-target="#composeModal<?php echo $row['id']?>">Compose</button></td>
                                             <td><?php echo $row['status']; ?></td>
                                           </tr>
-                                        
+
+                                         <!-- Send email -->
+                                         <div class="modal fade" id="sendEmail<?php echo $row['id']?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalLabel">Send Email for User: <?php echo $row['firstname'] ?></h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <form action="functions.php" method="POST" enctype="multipart/form-data">
+                                                <div class="modal-body">
+                                                    <input class="form-check-input" type="hidden" name="name" value="<?php echo $name ?>">
+                                                    <h5>File:</h5>
+                                                    <input type="text" class="form-control" value="<?php echo $row['resume']; ?>" name="files" readonly>
+                                                    <br>
+                                                    <h5>Email</h5>
+                                                    <input type="text" class="form-control" placeholder="Enter Email" name="emails">
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                    <button type="submit" class="btn btn-success" name="sendEmail" style="color:white">Send</button>
+                                                </div>
+                                            </form>
+                                            </div>
+                                        </div>
+                                        </div>
+
                                         <!-- Compose Message and Send Verification Status -->
                                          <div class="modal fade" id="composeModal<?php echo $row['id']?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                         <div class="modal-dialog">

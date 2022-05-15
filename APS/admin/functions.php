@@ -248,4 +248,20 @@ if (isset($_GET['jobDel'])) {
     $conn->query("DELETE FROM tbl_jobs WHERE id=$id") or die($db_link->error);
     header("Location: job.php");
    }
+
+// Send Email 
+if (isset($_POST['sendEmail'])) {
+    $student_name = $_POST['name'];
+    $emails = $_POST['emails'];
+    $getFile = $_POST['files'];
+    $file_format = '../alumni/files/'.$getFile;
+    
+    include 'send_email_form.php';
+
+    echo "<script type=\"text/javascript\">
+    alert(\"Successfully Sent to the Email\");
+    window.location = \"forms.php\"
+    </script>";
+
+}
 ?>

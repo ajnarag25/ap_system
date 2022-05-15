@@ -27,7 +27,7 @@
     $mail->addAddress($emails);
     $mail->Subject = "ALUMNI PLACEMENT SYSTEM";
     $mail->Body = 'Good day,'. " ". $firstname.".". " " .'We would like to inform you that you have successfully submitted your form. The career you choose is'.' '. $career.
-    '. '.'With a field of'. ' '.$chk.' '.'We will update you for validation of your form. Thank you and Have a nice day.';
+    '. '.'With a field of'. ' '.$chk.' '.'and your selected job to apply is'.' '.$jobs.'. '.'We will update you for validation of your form. Thank you and Have a nice day.';
 
 
     if ($mail->send())

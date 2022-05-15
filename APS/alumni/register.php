@@ -40,6 +40,7 @@ if (isset($_POST['submit'])) {
       }else{
         $sql = "INSERT INTO tbl_users (student_id,username, password, email, firstname, middlename, lastname, gender, batch, course_id, branch_id, avatar_path, stat, feedback)
         VALUES ('$student_no', '$username', '".password_hash($_POST['password'], PASSWORD_DEFAULT)."', '$email', '$firstname', '$middlename', '$lastname', '$gender','$batch', '$course_id', '$branch_id', '$target_file', 'NO FORM SUBMITTED', 'N/A')";
+          header('location:../index.php');
         $result = mysqli_query($conn, $sql);
 
         if ($result) {

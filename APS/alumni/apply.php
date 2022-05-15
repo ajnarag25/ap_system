@@ -129,7 +129,7 @@ if (!isset($_SESSION['user'])) {
                       <option>Female</option>
                   </select>
                 </div>
-                <div class="form-group col-md-6">
+                <div class="form-group col-md-4">
                 <label for="">Types of Careers <span style="color: red;">*</span></label>
             
                 <select name="career" class="form-select" id="id1" onchange="myFunction()" required>
@@ -146,7 +146,24 @@ if (!isset($_SESSION['user'])) {
                   </select>
              
                 </div>
-                <div class="form-group col-md-6">
+                <div class="form-group col-md-4">
+                <label for="">Jobs <span style="color: red;">*</span></label>
+            
+                <select name="jobs" class="form-select" required>
+                <option selected disabled="true">Select Job</option>
+                <?php 
+                 $querys = "SELECT * FROM tbl_jobs";
+                 $results = mysqli_query($conn, $querys);
+                 while ($row = mysqli_fetch_array($results)) {
+                   
+                ?>
+                      <option value="<?php echo $row['job_name'] ?>">
+                      <?php echo $row['job_name'] ?></option>
+                     <?php }; ?>
+                  </select>
+             
+                </div>
+                <div class="form-group col-md-4">
                 <label for="">Upload Resume <span style="color: red;">*</span></label>
                   <input type="file" class="form-control" name="file" accept="application/pdf" required>
                 </div>
