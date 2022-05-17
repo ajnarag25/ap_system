@@ -148,17 +148,28 @@ if (!isset($_SESSION['user'])) {
                 </div>
                 <div class="form-group col-md-4">
                 <label for="">Jobs <span style="color: red;">*</span></label>
-            
-                <select name="jobs" class="form-select" required>
-                <option selected disabled="true">Select Job</option>
-                <?php 
-                 $querys = "SELECT * FROM tbl_jobs";
-                 $results = mysqli_query($conn, $querys);
-                 while ($row = mysqli_fetch_array($results)) {
+        
+                <?php if (isset($_GET['get_job'])) {
+                        $job = $_GET['get_job'];
+                        ?>
+                      <select name="jobs" class="form-select" required>
+                      <option selected value="<?php echo $job ?>"><?php echo $job ?></option>
+                      <?php
+                    } else{
+                      ?>
+                      <select name="jobs" class="form-select" required>
+                      <option selected disabled="true">Select a job</option>
+                        <?php 
+                        $querys = "SELECT * FROM tbl_jobs";
+                        $results = mysqli_query($conn, $querys);
+                        while ($row = mysqli_fetch_array($results)) {
                    
-                ?>
+                      ?>  
                       <option value="<?php echo $row['job_name'] ?>">
                       <?php echo $row['job_name'] ?></option>
+                      <?php
+                    }
+                   ?>
                      <?php }; ?>
                   </select>
              

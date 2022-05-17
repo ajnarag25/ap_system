@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost: 3307
--- Generation Time: May 14, 2022 at 07:39 AM
+-- Generation Time: May 17, 2022 at 11:30 AM
 -- Server version: 10.4.20-MariaDB
 -- PHP Version: 8.0.8
 
@@ -117,6 +117,7 @@ CREATE TABLE `tbl_forms` (
   `gender` varchar(100) NOT NULL,
   `career` varchar(100) NOT NULL,
   `field` varchar(100) NOT NULL,
+  `job` varchar(100) NOT NULL,
   `resume` text NOT NULL,
   `status` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -176,7 +177,7 @@ CREATE TABLE `tbl_users` (
 
 INSERT INTO `tbl_users` (`user_id`, `student_id`, `username`, `password`, `email`, `firstname`, `middlename`, `lastname`, `gender`, `batch`, `course_id`, `branch_id`, `type`, `is_verified`, `avatar_path`, `stat`, `feedback`, `otp`) VALUES
 (1, '', 'admin', '$2y$10$pYt1rB2S6GvZ6dpqkOSI9OAZJ5MkADKKe5tn5lDX5PqIXgXU1W3AO', 'placement.alumni.relation@qcu.edu.ph', 'Admin', '', '', 'Male', 2021, 1, 1, 'admin', 1, '../alumni/uploads/laudalasan.gif', '', '', 0),
-(22, 'Student12345', 'ajnarag25', '$2y$10$5UtTMsTvnhdmaMguON6u3edb8/jIm.9YCWTA.mMI1bXn6NyuCVr06', 'ajnarag25@gmail.com', 'Avor john', 'Atienza', 'Narag', 'Male', 2019, 1, 2, 'alumni', 1, 'uploads/1652020333img_568656.png', 'NO FORM SUBMITTED', 'N/A', 834);
+(26, '14-1169', 'camille22', '$2y$10$iCda4ZGoo/xjLEEnMse6jek0QUdyYZdShQlG9hB4D6lT9GD8CfHRO', 'pollosokhaty@gmail.com', 'Camille Kaye', 'Cuajotor', 'Polloso', 'Female', 2019, 4, 1, 'alumni', 1, 'uploads/1652683926received_305559265116397.jpeg', 'NO FORM SUBMITTED', 'N/A', 0);
 
 --
 -- Indexes for dumped tables
@@ -258,7 +259,7 @@ ALTER TABLE `tbl_fields`
 -- AUTO_INCREMENT for table `tbl_forms`
 --
 ALTER TABLE `tbl_forms`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
 
 --
 -- AUTO_INCREMENT for table `tbl_jobs`
@@ -270,7 +271,7 @@ ALTER TABLE `tbl_jobs`
 -- AUTO_INCREMENT for table `tbl_users`
 --
 ALTER TABLE `tbl_users`
-  MODIFY `user_id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `user_id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- Constraints for dumped tables

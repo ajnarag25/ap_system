@@ -93,17 +93,15 @@ if (!isset($_SESSION['user'])) {
             </div>
             <div class="modal-body">
               <div class="text-center">
-              <img src="<?php echo $row['image']?>" width="180px">
-              <br><br>
-              <h4>JOIN US AND ENJOY THESE BENEFITS:</h4>
-              <br>
-              <textarea class="form-control" cols="30" rows="15" readonly><?php echo $row['job_desc']?></textarea>
+                <img src="<?php echo $row['image']?>" width="180px">
+                <br><br>
+                <h4>JOIN US AND ENJOY THESE BENEFITS:</h4>
+                <br>
+                <textarea class="form-control" cols="30" rows="15" readonly><?php echo $row['job_desc']?></textarea>
               </div>
             </div>
             <div class="text-center">
-              <form action="apply.php#form">
-                <button type="submit" class="btn btn-success">Interested? <br> Register Here!</button>
-              </form>
+                <a class="btn btn-success" type="submit" style="color:white" href="apply.php?get_job=<?php echo $row["job_name"] ?>#form">Interested? <br> Register Here!</a>
             <br><br>
             </div>
         </div>
