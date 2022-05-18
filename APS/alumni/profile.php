@@ -135,8 +135,10 @@ $user = mysqli_fetch_assoc($result);
                     ?>
                       <input type="hidden" name="user_id" value="<?php echo $user['user_id']?>">
                         <input class="form-control" type="text" name="firstname" placeholder="<?php echo $user['firstname']?>" required>
+                        <input class="form-control" type="text" name="middlename" placeholder="<?php echo $user['middlename']?>" required>
+                        <input class="form-control" type="text" name="lastname" placeholder="<?php echo $user['lastname']?>" required>
                         <input type="text" class="form-control" name="email" placeholder="<?php echo $user['email']?>" required>
-                        <input type="text" class="form-control" name="gender" placeholder="<?php echo $user['gender']?>" required>
+                        <input type="text" class="form-control" name="gender" placeholder="<?php echo $user['gender']?>" disabled>
                         <input type="text" class="form-control" name="course" placeholder="<?php echo $user['course_name']?>" disabled>
                         <input type="text" class="form-control" name="branch" placeholder="<?php echo $user['branch_name']?>" disabled>
                         <input type="datetime" class="form-control" name="batch" placeholder="<?php echo $user['batch']?>" disabled>

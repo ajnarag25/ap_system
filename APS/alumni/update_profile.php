@@ -6,14 +6,16 @@ session_start();
 
 if(isset($_POST['update'])){
 	$updatedFN = $_POST['firstname'];
+	$updatedMN = $_POST['middlename'];
+	$updatedLN = $_POST['lastname'];
 	$updatedEmail = $_POST['email'];
-	$updatedGender = $_POST['gender'];
 
-	if (!empty($updatedFN) && !empty($updatedEmail) && !empty($updatedGender)){
+	if (!empty($updatedFN) && !empty($updatedMN) && !empty($updatedLN) && !empty($updatedEmail)){
 		$sql = 'UPDATE tbl_users SET 
 		firstname = "'.$_POST['firstname'].'",
-		email = "'.$_POST['email'].'",
-		gender = "'.$_POST['gender'].'"
+		middlename = "'.$_POST['middlename'].'",
+		lastname = "'.$_POST['lastname'].'",
+		email = "'.$_POST['email'].'"
 		WHERE user_id="'.$_POST['user_id'].'"
 		';
 		$result = mysqli_query($conn, $sql);

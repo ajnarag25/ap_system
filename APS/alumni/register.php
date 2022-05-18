@@ -40,8 +40,11 @@ if (isset($_POST['submit'])) {
       }else{
         $sql = "INSERT INTO tbl_users (student_id,username, password, email, firstname, middlename, lastname, gender, batch, course_id, branch_id, avatar_path, stat, feedback)
         VALUES ('$student_no', '$username', '".password_hash($_POST['password'], PASSWORD_DEFAULT)."', '$email', '$firstname', '$middlename', '$lastname', '$gender','$batch', '$course_id', '$branch_id', '$target_file', 'NO FORM SUBMITTED', 'N/A')";
-          header('location:../index.php');
         $result = mysqli_query($conn, $sql);
+        echo "<script type=\"text/javascript\">
+        alert(\"Successfully Registered\");
+        window.location = \"../index.php\"
+        </script>";
 
         if ($result) {
           echo "<script>alert('User Registration Completed.')</script>";
@@ -176,7 +179,6 @@ if (isset($_POST['submit'])) {
         <div class="gender-details">
           <input type="radio" name="gender" id="one" value="Male">
           <input type="radio" name="gender" id="two" value="Female">
-          <input type="radio" name="gender" id="three" value="Others">
           <span class="gender-title">Gender</span>
           <div class="category">
             <label for="one">
@@ -187,10 +189,9 @@ if (isset($_POST['submit'])) {
             <span class="dot two"></span>
             <span class="gender">Female</span>
           </label>
-          <label for="three">
-            <span class="dot three"></span>
-            <span class="gender">Others</span>
-            </label>
+          <label for="">
+
+          </label>
           </div>
         <div class="button">
          <center> <button name="submit" class="btn">Register</button></center>
