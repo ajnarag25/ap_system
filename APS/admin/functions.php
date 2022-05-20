@@ -6,8 +6,28 @@ include "connection.php";
 // Verify User
 if (isset($_GET['verify'])) {
     $id = $_GET['verify'];
-    $conn->query("UPDATE tbl_users SET is_verified=1 WHERE user_id=$id") or die($db_link->error);
-    header("Location: users.php");
+
+    $sql = "SELECT * FROM tbl_users WHERE user_id='$id'";
+    $result = mysqli_query($conn, $sql);
+    while ($row = mysqli_fetch_array($result)) {
+        $emails = $row['email'];
+        $firstname = $row['firstname'];
+        $middlename = $row['middlename'];
+        $lastname = $row['lastname'];
+
+        if ($row['is_verified'] == 1){
+            header("Location: users.php");
+        }else{
+            include 'send_email_verify.php';
+            $conn->query("UPDATE tbl_users SET is_verified=1 WHERE user_id=$id") or die($db_link->error);
+            echo "<script type=\"text/javascript\">
+            alert(\"Successfully submitted\");
+            window.location = \"users.php\"
+            </script>";
+        }
+    }
+
+    
 }
 
 // Update User

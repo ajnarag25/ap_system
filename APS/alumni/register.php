@@ -38,7 +38,7 @@ if (isset($_POST['submit'])) {
       if($check == false) {
         echo "<script>alert('File is not an image.')</script>";
       }else{
-        $sql = "INSERT INTO tbl_users (student_id,username, password, email, firstname, middlename, lastname, gender, batch, course_id, branch_id, avatar_path, stat, feedback)
+        $sql = "INSERT INTO tbl_users (student_id,username, password, email, firstname, middlename, lastname, sex, batch, course_id, branch_id, avatar_path, stat, feedback)
         VALUES ('$student_no', '$username', '".password_hash($_POST['password'], PASSWORD_DEFAULT)."', '$email', '$firstname', '$middlename', '$lastname', '$gender','$batch', '$course_id', '$branch_id', '$target_file', 'NO FORM SUBMITTED', 'N/A')";
         $result = mysqli_query($conn, $sql);
         echo "<script type=\"text/javascript\">
@@ -96,15 +96,15 @@ if (isset($_POST['submit'])) {
         <div class="user-details">
           <div class="input-box">
             <span class="details">First Name</span>
-            <input type="text" placeholder="Enter your firstname" name="firstname" value="<?php echo $firstname; ?>" required>
+            <input type="text" onkeyup="lettersOnly(this)" placeholder="Enter your firstname" name="firstname" value="<?php echo $firstname; ?>" required>
           </div>
           <div class="input-box">
             <span class="details">Middle Name</span>
-            <input type="text" placeholder="Enter your middlename" name="middlename" value="<?php echo $middlename; ?>" required>
+            <input type="text" onkeyup="lettersOnly(this)" placeholder="Enter your middlename" name="middlename" value="<?php echo $middlename; ?>" required>
           </div>
           <div class="input-box">
             <span class="details">Last Name</span>
-            <input type="text" placeholder="Enter your lastname" name="lastname" value="<?php echo $lastname; ?>" required>
+            <input type="text" onkeyup="lettersOnly(this)" placeholder="Enter your lastname" name="lastname" value="<?php echo $lastname; ?>" required>
           </div>
           <div class="input-box">
             <span class="details">Username</span>
@@ -202,6 +202,12 @@ if (isset($_POST['submit'])) {
     <p class="register-text">Already have an account? <a href="../index.php">Login Here</a>.</p>
     </form>
   </div>
+  <script>
+    function lettersOnly(input) {
+        var regex = /[^a-z]/gi;
+        input.value = input.value.replace(regex, "");
+    }
+  </script>
 <script src="yearpicker.js"></script>
 <script>
   $(document).ready(function() {
