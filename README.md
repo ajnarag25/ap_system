@@ -1,6 +1,6 @@
 # aps_system
 ALUMNI PLACEMENT SYSTEM
 
-#ADMIN
-username: 'admin'
+#ADMIN <br>
+username: 'admin' <br>
 password: 'admin123'
