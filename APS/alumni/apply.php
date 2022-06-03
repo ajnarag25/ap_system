@@ -124,7 +124,7 @@ if (!isset($_SESSION['user'])) {
                 <div class="form-group col-md-4">
                 <label for="">Gender <span style="color: red;">*</span></label>
                   <select name="gender" class="form-select" required>
-                      <option selected value="<?php echo $row['gender'] ?>"><?php echo $row['gender'] ?></option>
+                      <option selected value="<?php echo $row['sex'] ?>"><?php echo $row['sex'] ?></option>
                       <option>Male</option>
                       <option>Female</option>
                   </select>
