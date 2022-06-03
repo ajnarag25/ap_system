@@ -16,8 +16,8 @@
     $mail->IsSMTP();
     $mail->Host = "smtp.gmail.com";
     $mail->SMTPAuth = true;
-    $mail->Username = "alumniplacement123@gmail.com";
-    $mail->Password = "GROUP2_APS";
+    $mail->Username = "youremaim@gmail.com";
+    $mail->Password = "yourpassword";
     $mail->Port = 587; //465 for ssl and 587 for tls
     $mail->SMTPSecure = "tls";
     
