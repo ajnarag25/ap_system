@@ -5,4 +5,4 @@ ALUMNI PLACEMENT SYSTEM
 username: 'admin' <br>
 password: 'admin123' <br>
 
---!IMPORT DB FIRST--
+--IMPORT DB FIRST--
