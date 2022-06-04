@@ -1,4 +1,4 @@
-# aps_system
+# ap_system
 ALUMNI PLACEMENT SYSTEM
 
 #ADMIN <br>
